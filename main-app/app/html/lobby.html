@@ -1,10 +1,31 @@
+<nav>
+    <ul>
+        <li><a ui-sref="loginScreen">Username: {{model.playerUsername}}</a></li>
+        <li><a ui-sref="loginScreen">Balance: {{model.playerBalance}} </a></li>
+        <li><a ui-sref="loginScreen">Home</a></li>
+        <li><a ui-sref="#">Lobby</a></li>
+        <li><a ui-sref="#">My Account</a></li>
+        <li><a ui-sref="#">Logout</a></li>
+    </ul>
+</nav>
+<br>
+
 <div class="gameAbout">
 
-    <h2>Bingo 90</h2>
+    <img src="images/bingo90.png">
+
+    <h3>Lobby</h3>
+    Please select a room
+    <br>
+    <img src="images/harlequin.png" class="room-img">
+    <img src="images/kaleidoscope.png" class="room-img">
+    <img src="images/mosaic.png" class="room-img">
+    <img src="images/rainbow.png" class="room-img">
+    <img src="images/spectrum.png" class="room-img">
 
     <br>
-    Username: {{model.playerUsername}} <br>
-    Balance: {{model.playerBalance}} <br>
+
+
     Token: {{model.playerToken}} <br> <br>
 
 </div>
