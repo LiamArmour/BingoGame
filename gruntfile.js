@@ -54,7 +54,7 @@
         grunt.registerTask('jsFiles',['jshint','clean:javascript','concat:concat']);
         grunt.registerTask('default',['copy', 'editHtml', 'lessFiles', 'jsFiles', 'server', 'karma', 'watch']);
 
-        var port = 35001;
+        var port = 35002;
         grunt.registerTask('server', 'Start a custom web server', function() {
             var server = require('./.grunt/express-task.js');
             server.listen(port);
