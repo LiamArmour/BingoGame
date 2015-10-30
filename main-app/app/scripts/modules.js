@@ -10,13 +10,13 @@
         'Tombola.Games.Bingo90.Game'])
 
     .config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/loginScreen");
         $stateProvider
             .state('login', {
-                url: "/login",
+                url: "/loginScreen",
                 controller:'LobbyController',
                 templateProvider:function ($templateCache){ return $templateCache.get("partials/login.html");}
-            })
+            });
     }]);
 
 })();
