@@ -9,9 +9,8 @@
         'Tombola.Games.Bingo90.Core',
         'Tombola.Games.Bingo90.Game'])
 
-
     .config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise("/playerSelection");
+        $urlRouterProvider.otherwise("/loginScreen");
         $stateProvider
             .state('login', {
                 url: "/loginScreen",

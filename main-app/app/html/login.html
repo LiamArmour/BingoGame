@@ -1,10 +1,9 @@
-<div class="gameAbout">
+<div class="gameAbout" ng-controller="MainController"
+    <h2>{{gameTitle}}</h2>
 
-    <h1>{{gameTitle}}</h1>
-
-    <div align="center">
-
-    </div>
-    <br><br>
-
+<form method="post">
+    <p><input type="text" ng-model="username" placeholder="Username"></p>
+    <p><input type="password" ng-model="password" placeholder="Password"></p>
+    <p><input type="button" value="Login!" ng-click="login()"></p>
+</form>
 </div>

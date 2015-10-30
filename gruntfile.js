@@ -52,7 +52,7 @@
         grunt.registerTask('editHtml',['clean:html','copy:html','copy:partials']);
         grunt.registerTask('lessFiles',['lesslint','clean:css','less']);
         grunt.registerTask('jsFiles',['jshint','clean:javascript','concat:concat']);
-        grunt.registerTask('default',['copy', 'editHtml', 'lessFiles', 'jsFiles', 'server', 'karma', 'watch']);
+        grunt.registerTask('default',['copy', 'editHtml', 'lessFiles', 'jsFiles', 'server', 'watch']);
 
         var port = 35002;
         grunt.registerTask('server', 'Start a custom web server', function() {
