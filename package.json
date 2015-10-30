@@ -1,7 +1,7 @@
 {
-  "name": "Noughts-and-Crosses",
+  "name": "Fake-Bingo-Game",
   "version": "0.0.0",
-  "description": "Noughts-and-Crosses-App",
+  "description": "Fake-Bingo-Game-App",
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiamArmour/Noughts-and-Crosses.git"
+    "url": "https://github.com/LiamArmour/BingoGame.git"
   },
   "keywords": [
     "html",
@@ -51,7 +51,7 @@
   "author": "Liam Armour",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LiamArmour/Noughts-and-Crosses/issues"
+    "url": "https://github.com/LiamArmour/BingoGame/issues"
   },
-  "homepage": "https://github.com/LiamArmour/Noughts-and-Crosses"
+  "homepage": "https://github.com/LiamArmour/BingoGame"
 }

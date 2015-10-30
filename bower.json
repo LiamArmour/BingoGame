@@ -1,13 +1,14 @@
 {
   "name": "npm bower install angular --save",
   "version": "0.0.0",
-  "homepage": "https://github.com/LiamArmour/Noughts-and-Crosses",
+  "homepage": "https://github.com/LiamArmour/BingoGame",
   "authors": [
     "Liam Armour"
   ],
-  "description": "Noughts and crosses application",
+  "description": "Fake Bingo Game",
   "main": "app.js",
   "moduleType": [
+
     "node"
   ],
   "keywords": [
