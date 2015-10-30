@@ -1,0 +1,220 @@
+/**
+ * Global Reset of all HTML Elements
+ *
+ * Resetting all of our HTML Elements ensures a smoother
+ * visual transition between browsers. If you don't believe me,
+ * try temporarily commenting out this block of code, then go
+ * and look at Mozilla versus Safari, both good browsers with
+ * a good implementation of CSS. The thing is, all browser CSS
+ * defaults are different and at the end of the day if visual
+ * consistency is what we're shooting for, then we need to
+ * make sure we're resetting all spacing elements.
+ *
+ */
+html, body {
+  border: 0;
+  font-family: "Helvetica-Neue", "Helvetica", Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+div, span, object, iframe, img, table, caption, thead, tbody,
+tfoot, tr, tr, td, article, aside, canvas, details, figure, hgroup, menu,
+nav, footer, header, section, summary, mark, audio, video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h4, h5, h6, p, blockquote, pre, a, abbr, address, cit, code,
+del, dfn, em, ins, q, samp, small, strong, sub, sup, b, i, hr, dl, dt, dd,
+ol, ul, li, fieldset, legend, label {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+  display: block;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  caption, th, td {
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+a img {
+  border: 0;
+}
+
+@backgroundColour: #5B83AD;
+@cellColour: #1E6A9F;
+@InfoBackground: #ccc;
+
+body {
+  background: url("../images/minion-background.jpg");
+  .players
+  {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;font-weight: bold;
+    font-size: 26px;
+  }
+}
+
+h1 {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 42px;
+}
+h2 {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+}
+
+
+nav {
+  width: 100%;
+  background: #f0f0f0;
+  ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      float: left;
+      padding-left: 35px;
+      padding-right: 35px;
+      text-align: center;
+      border-left: 1px solid #fff;
+      border-right: 1px solid @InfoBackground;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #616161;
+        padding: 10px 0;
+      }
+    }
+    li:first-child {
+      border-left: none;
+    }
+  }
+}
+
+
+
+
+
+.table
+{
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.row
+{
+  display: table-row;
+}
+.cell {
+  display: table-cell;
+  border: solid;
+  border-width: thin;
+
+  background: @cellColour;
+}
+.cell {
+  width: 200px;
+  height: 200px;
+}
+
+
+
+
+
+.player1, .player2 {
+  background-image: url('../images/minionSprite.png');
+}
+.player1 {
+  width: 200px;
+  height: 200px;
+  background-position: 0 -210px;
+}
+.player2 {
+  width: 200px;
+  height: 200px;
+  background-position: 0 0;
+}
+
+
+.playerSelection {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 610px;
+  text-align: center;
+  background: @InfoBackground;
+}
+.human, .pre-trained, .random {
+  background-image: url('../images/players-new.png');
+}
+.human {
+  display: inline-block;
+  width: 300px;
+  height: 250px;
+  background-position: 0 0;
+}
+.pre-trained {
+  display: inline-block;
+  width: 300px;
+  height: 250px;
+  background-position: 0 -260px;
+}
+.random {
+  display: inline-block;
+  width: 300px;
+  height: 250px;
+  background-position: 0 -520px;
+}
+
+.gameRules {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 610px;
+  text-align: center;
+  background: @InfoBackground;
+}
+
+.gameAbout {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 610px;
+  text-align: center;
+  background: @InfoBackground;
+}
+
+.gameWin {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 610px;
+  text-align: center;
+  background: @InfoBackground;
+}
+.win-image {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
