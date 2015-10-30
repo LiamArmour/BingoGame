@@ -1,42 +1,22 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.NoughtsAndCrosses.Lobby', []);
-    angular.module('Tombola.Games.NoughtsAndCrosses.Core', []);
-    angular.module('Tombola.Games.NoughtsAndCrosses.Game', []);
+    angular.module('Tombola.Games.Bingo90.Lobby', []);
+    angular.module('Tombola.Games.Bingo90.Core', []);
+    angular.module('Tombola.Games.Bingo90.Game', []);
 
-    angular.module('Tombola.Games.NoughtsAndCrosses', ['ui.router',
-        'Tombola.Games.NoughtsAndCrosses.Lobby',
-        'Tombola.Games.NoughtsAndCrosses.Core',
-        'Tombola.Games.NoughtsAndCrosses.Game'])
+    angular.module('Tombola.Games.Bingo90', ['ui.router',
+        'Tombola.Games.Bingo90.Lobby',
+        'Tombola.Games.Bingo90.Core',
+        'Tombola.Games.Bingo90.Game'])
 
     .config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise("/playerSelection");
+        $urlRouterProvider.otherwise("/login");
         $stateProvider
-            .state('playerSelection', {
-                url: "/playerSelection",
+            .state('login', {
+                url: "/login",
                 controller:'LobbyController',
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/player-selection.html");}
+                templateProvider:function ($templateCache){ return $templateCache.get("partials/login.html");}
             })
-            .state('gameBoard', {
-                url: "/gameBoard",
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/game-board.html");}
-            })
-            .state('gameRules', {
-                url: "/rules",
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/game-rules.html");}
-            })
-            .state('gameAbout', {
-                url: "/gameAbout",
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/game-about.html");}
-            })
-            .state('gameWin', {
-                url: "/win",
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/game-win.html");}
-            })
-            .state('gameDraw', {
-                url: "/draw",
-                templateProvider:function ($templateCache){ return $templateCache.get("partials/game-draw.html");}
-            });
     }]);
 
 })();
