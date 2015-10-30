@@ -25,7 +25,8 @@
                 console.log(apiName);
                 console.log(data);
 
-                $http.post(proxyConstants.baseURL + apiName, data).
+                $http.defaults.headers.common['X-TOKEN'] = data;
+                $http.post(proxyConstants.baseURL + apiName).
                     then(function(response) {
                         defered.resolve(response.data);
                         console.log(response.data);
