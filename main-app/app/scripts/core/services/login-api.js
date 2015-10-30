@@ -9,8 +9,22 @@
                         "password": passwordType
                     };
                 },
-                callApi = function(callName, requestData){
-                    gameProxy.apiCall(callName, requestData)
+                createNextGameData = function(tokenType){
+                    return {
+                        "token": tokenType
+                    };
+                },
+                callApiPOST = function(callName, requestData){
+                    gameProxy.apiCallPOST(callName, requestData)
+                        .then(function (data) {
+                            //updateCallback(data);
+                        }).catch(function (data) {
+                            /* Error stub */
+                            console.log(data);
+                        });
+                },
+                callApiGET = function(callName, requestData){
+                    gameProxy.apiCallGET(callName, requestData)
                         .then(function (data) {
                             //updateCallback(data);
                         }).catch(function (data) {
@@ -20,7 +34,11 @@
                 };
 
             me.loginButton = function (usernameType, passwordType) {
-                callApi("users/login", createLoginData(usernameType, passwordType));
+                callApiPOST("users/login", createLoginData(usernameType, passwordType));
+            };
+
+            me.nextButton = function (tokenType) {
+                callApiGET("game/next", createNextGameData(tokenType));
             };
         }]);
 })();

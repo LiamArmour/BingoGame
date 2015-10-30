@@ -1,8 +1,8 @@
 <nav>
     <ul>
-        <li><a ui-sref="loginScreen">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="loginScreen">Balance: {{model.playerBalance}} </a></li>
-        <li><a ui-sref="loginScreen">Home</a></li>
+        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{model.playerBalance}} </a></li>
+        <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
         <li><a ui-sref="#">Logout</a></li>
@@ -10,18 +10,18 @@
 </nav>
 <br>
 
-<div class="gameAbout">
+<div class="gameAbout" ng-controller="MainController">
 
     <img src="images/bingo90.png">
 
     <h3>Lobby</h3>
     Please select a room
     <br>
-    <img src="images/harlequin.png" class="room-img">
-    <img src="images/kaleidoscope.png" class="room-img">
-    <img src="images/mosaic.png" class="room-img">
-    <img src="images/rainbow.png" class="room-img">
-    <img src="images/spectrum.png" class="room-img">
+    <img src="images/harlequin.png" class="room-img" ng-click="nextGame()">
+    <img src="images/kaleidoscope.png" class="room-img" ng-click="nextGame()">
+    <img src="images/mosaic.png" class="room-img" ng-click="nextGame()">
+    <img src="images/rainbow.png" class="room-img" ng-click="nextGame()">
+    <img src="images/spectrum.png" class="room-img" ng-click="nextGame()">
 
     <br>
 

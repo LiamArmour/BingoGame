@@ -10,5 +10,10 @@
                 loginApi.loginButton($scope.username, $scope.password);
             };
 
+            $scope.nextGame = function (){
+                loginApi.nextButton($scope.model.playerToken);
+                console.log($scope.model.playerToken);
+            };
+
         }]);
 })();
