@@ -16,6 +16,10 @@
                 url: "/loginScreen",
                 controller:'LobbyController',
                 templateProvider:function ($templateCache){ return $templateCache.get("partials/login.html");}
+            })
+            .state('lobby', {
+                url: "/lobby",
+                templateProvider:function ($templateCache){ return $templateCache.get("partials/lobby.html");}
             });
     }]);
 
