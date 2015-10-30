@@ -24,20 +24,14 @@
         <li><a ng-click="changeStyle()">Change Theme</a></li>
     </ul>
 </nav>
+<br>
+<div ui-view></div>
 
-<h1>{{gameTitle}}</h1>
-
-<div ui-view>
-
-</div>
-<div align="center">
-<form method="post" action="index.html">
+<form method="post">
     <p><input type="text" ng-model="username" placeholder="Username"></p>
     <p><input type="password" ng-model="password" placeholder="Password"></p>
     <p><input type="button" value="Login!" ng-click="login()"></p>
 </form>
-    </div>
-</div>
 
 <br>
 Username: {{model.playerUsername}} <br>
