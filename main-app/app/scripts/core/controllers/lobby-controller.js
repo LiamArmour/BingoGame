@@ -1,4 +1,7 @@
 (function () {
     'use strict';
-    /*TODO: Write some codez*/
+    angular.module('Tombola.Games.Bingo90')
+        .controller('LobbyController', ['$scope', function($scope) {
+            $scope.playerSelection = playerSelection;
+        }]);
 })();

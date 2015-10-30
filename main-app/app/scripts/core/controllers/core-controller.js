@@ -5,6 +5,5 @@
         .controller('MainController', ['$scope','$state',  function($scope, $state) {
             $scope.gameTitle = 'tombola';
 
-
         }]);
 })();
