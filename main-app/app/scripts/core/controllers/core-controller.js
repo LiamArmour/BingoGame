@@ -5,6 +5,7 @@
         .controller('MainController', ['$scope','LoginApi','gameApi','LoginProxy',  function($scope, loginApi, loginProxy) {
             $scope.gameTitle = 'tombola';
             $scope.model = loginProxy;
+            
 
             $scope.login = function (){
                 loginApi.loginButton($scope.username, $scope.password);
