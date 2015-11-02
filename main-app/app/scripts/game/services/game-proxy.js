@@ -15,8 +15,8 @@
                         'content-type': 'application/json'
                     }
                 };
-                $http(req).
-                    then(function (response) {
+                $http(req)
+                    .then(function (response) {
                         deferred.resolve(response.data);
                     }).catch(function (response) {
                         deferred.reject(response.data);
