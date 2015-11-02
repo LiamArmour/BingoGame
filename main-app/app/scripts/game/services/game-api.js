@@ -5,7 +5,7 @@
             var me = this,
 
                 callApi = function(apiName, action, data, token){
-                    gameProxy.apiCallLogin(apiName, action, data, token)
+                    gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
                             //updateCallback(data);
                         }).catch(function (data) {

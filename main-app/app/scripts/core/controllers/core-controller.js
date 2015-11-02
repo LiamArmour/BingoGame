@@ -2,7 +2,7 @@
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
 
-        .controller('MainController', ['$scope','LoginApi','gameApi','LoginProxy',  function($scope, loginApi, gameApi, loginProxy) {
+        .controller('MainController', ['$scope','LoginApi','GameApi','LoginProxy',  function($scope, loginApi, gameApi, loginProxy) {
             $scope.gameTitle = 'tombola';
             $scope.model = loginProxy;
 

@@ -3,7 +3,7 @@
     module.exports={
         concat:{
             cwd:'',
-            src:['main-app/app/scripts/modules.js','main-app/app/scripts/core/**/*.js','main-app/app/scripts/lobby/**/*.js','main-app/app/scripts/gameboard/**/*.js'],
+            src:['main-app/app/scripts/modules.js','main-app/app/scripts/core/**/*.js','main-app/app/scripts/login/**/*.js','main-app/app/scripts/game/**/*.js'],
             dest:'.build/scripts/app.js',
             expand:false
         },
