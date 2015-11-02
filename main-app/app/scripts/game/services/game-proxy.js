@@ -8,7 +8,7 @@
                 var deferred = $q.defer();
                 var req = {
                     method: action,
-                    url: proxyConstants.baseURL + endpoint,
+                    url: proxyConstants.baseURL + apiName,
                     data: data,
                     headers: {
                         'x-token': token,
