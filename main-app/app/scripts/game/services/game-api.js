@@ -18,5 +18,9 @@
             me.nextButton = function (token) {
                 callApi("game/next", "GET", "", token);
             };
+
+            me.buyIn = function (token) {
+                callApi("game/next", "GET", "", token);
+            };
         }]);
 })();

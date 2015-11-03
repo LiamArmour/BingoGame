@@ -13,7 +13,10 @@
 
             $scope.nextGame = function (){
                 gameApi.nextButton($scope.model.playerToken);
-                console.log($scope.model.playerToken);
+            };
+
+            $scope.buyInGame = function (){
+                gameApi.buyIn($scope.model.playerToken);
             };
 
         }]);
