@@ -29,6 +29,13 @@
             expand: true
         },
 
+        copycss: {
+            cwd: '',
+            src: ['main-app/app/css/bingo-ticket.css'],
+            dest: '.build/style/bingo-ticket.css',
+            expand:false
+        },
+
         bower: {
             cwd: 'bower_components',
             src: ['**/*.*'],
