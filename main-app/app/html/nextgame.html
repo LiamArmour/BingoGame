@@ -14,8 +14,13 @@
 
     <img src="images/bingo90.png">
 
-    <h3>Next Game</h3>
-    The next game starts in: {{model.returnedMessage}}
+    <h3>Buy tickets for game {{gameModel.returnedMessage.payload.gameId}}</h3>
+    You are buying tickets for Bingo90<br>
+    Click on the amount of tickets or strips you require<br>
 
+    <img src="images/tickets.png" ng-click="buyInGame()"> <br>
+
+    The next game starts in: {{gameModel.returnedMessage.payload.start}}<br>
+    New Account Balance: {{model.playerBalance}}
 
 </div>
