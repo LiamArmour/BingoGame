@@ -6,7 +6,7 @@
                 buyInData = {
                     gameId: 1,
                     userId: "drwho",
-                    balance: 90,
+                    balance: 19990,
                     callnumber: 1
                 },
 
