@@ -19,5 +19,9 @@
                 gameApi.buyIn($scope.model.playerToken);
             };
 
+            $scope.getFirstCall = function (){
+                gameApi.getCall($scope.model.playerToken);
+            };
+
         }]);
 })();

@@ -6,11 +6,18 @@
                 buyInData = {
                     gameId: 1,
                     userId: "drwho",
+                    balance: 19990
+                },
+                getCallData = {
+                    gameId: 1,
+                    userId: "drwho",
                     balance: 19990,
                     callnumber: 1
                 },
 
-                callApi = function(apiName, action, data, token){
+                //{gameId: config.game.gameId, card: config.game.card, user: player }
+
+            callApi = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
                             console.log(data);
@@ -26,7 +33,11 @@
             };
 
             me.buyIn = function (token) {
-                callApi("game/getcall", "POST", buyInData, token);
+                callApi("game/buyticket", "POST", buyInData, token);
+            };
+
+            me.getCall = function (token) {
+                callApi("game/getcall", "POST", getCallData, token);
             };
         }]);
 })();

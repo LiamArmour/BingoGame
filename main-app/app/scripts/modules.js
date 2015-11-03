@@ -24,7 +24,7 @@
                 url: "/nextGame",
                 templateUrl: "partials/nextgame.html"
             })
-            .state('Call', {
+            .state('TicketBought', {
                 url: "/inGame",
                 templateUrl: "partials/inGame.html"
             });
