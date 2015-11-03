@@ -4,9 +4,9 @@
         .service('GameApi',  ['GameProxy', function (gameProxy) {
             var me = this,
                 buyInData = {
-                    gameId: action,
-                    userId: dd,
-                    balance: data,
+                    gameId: 1,
+                    userId: drwho,
+                    balance: 19990,
                     callnumber: 1
                 },
 
