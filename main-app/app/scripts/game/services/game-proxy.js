@@ -16,10 +16,11 @@
                         'content-type': 'application/json'
                     }
                 };
-                console.log(token);
                 $http(req).
                     then(function (response) {
                         deferred.resolve(response.data);
+                        me.returnedMessage = response.data;
+                        $state.go(response.data.message);
                     }).catch(function (response) {
                         deferred.reject(response.data);
                         console.log('Error coming from proxy:' + response);
@@ -30,21 +31,3 @@
 
         }]);
 })();
-
-
-//me.apiCallLogin = function(apiName, data){
-//    var defered = $q.defer();
-//
-//    $http.post(proxyConstants.baseURL + apiName, data).
-//        then(function(response) {
-//            defered.resolve(response.data);
-//            me.playerBalance = response.data.payload.user.balance;
-//            me.playerToken = response.data.payload.user.token;
-//            me.playerUsername = response.data.payload.user.username;
-//            $state.go('lobby');
-//        }, function(response){
-//            defered.reject(response.data);
-//        });
-//
-//    return defered.promise;
-//};
