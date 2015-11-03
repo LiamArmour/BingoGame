@@ -23,6 +23,10 @@
             .state('NextGame', {
                 url: "/nextGame",
                 templateUrl: "partials/nextgame.html"
+            })
+            .state('Call', {
+                url: "/inGame",
+                templateUrl: "partials/inGame.html"
             });
 
     }]);

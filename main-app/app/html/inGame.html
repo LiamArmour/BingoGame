@@ -1,0 +1,21 @@
+<nav>
+    <ul>
+        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{model.playerBalance}} </a></li>
+        <li><a ui-sref="#">Home</a></li>
+        <li><a ui-sref="#">Lobby</a></li>
+        <li><a ui-sref="#">My Account</a></li>
+        <li><a ui-sref="#">Logout</a></li>
+    </ul>
+</nav>
+<br>
+
+<div class="gameAbout" ng-controller="MainController">
+
+    <img src="images/bingo90.png">
+
+    <h3>Game ID: {{gameModel.returnedMessage.payload.gameId}}</h3>
+    Call Number: {{gameModel.returnedMessage.payload.callnumber}} <br>
+    BALL: {{gameModel.returnedMessage.payload.call}}
+
+</div>
