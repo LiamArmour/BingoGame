@@ -7,6 +7,7 @@
                 callApi = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
+                            console.log(data);
                             //updateCallback(data);
                         }).catch(function (data) {
                             /* Error stub */
