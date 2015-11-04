@@ -18,8 +18,7 @@
     TICKET: {{gameModel.returnedMessage.payload.card}} <br>
     <br>
 
-    <div ng-repeat="strip in bingoStrip">
-        <div class="bingoBackground animated fadeInDownBig">
+        <div class="bingoBackground">
             <div class="gameboard">
                 <div class="bingoCell textCenter">{{strip[0][0]}}</div>
                 <div class="bingoCell textCenter">{{strip[0][1]}}</div>
@@ -51,9 +50,7 @@
                 <div class="bingoCell borderBottom textCenter">{{strip[2][7]}}</div>
                 <div class="bingoCell borderBottom textCenter">{{strip[2][8]}}</div>
             </div>
-            <div class="numbersLeft"><img src="images/togo_default.png"></div>
+            <div class="numbersLeft"><img src="images/togo.png"></div>
         </div>
-    </div>
-
 
 </div>
