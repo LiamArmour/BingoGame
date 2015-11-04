@@ -19,7 +19,7 @@
             };
 
             me.logout = function (token) {
-                callApi("/users/login", "POST", "", token);
+                callApi("users/logout", "POST", "", token);
             };
         }]);
 })();
