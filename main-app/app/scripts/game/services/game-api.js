@@ -6,16 +6,14 @@
                 buyInData = {
                     gameId: 1,
                     userId: "drwho",
-                    balance: 19990
+                    balance: 100000000000
                 },
                 getCallData = {
                     gameId: 1,
                     userId: "drwho",
-                    balance: 19990,
+                    balance: 100000000000,
                     callnumber: 1
                 },
-
-                //{gameId: config.game.gameId, card: config.game.card, user: player }
 
             callApi = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
