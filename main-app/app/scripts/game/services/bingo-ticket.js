@@ -1,15 +1,16 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('BingoTicket', [function() {
+        .service('BingoTicket', [ function() {
+            var me = this;
 
-            var pushArray = function () {
+            me.pushArray = function (card) {
+                console.log(card);
 
-            };
+                };
 
-            var bingoTicket = gameModel.returnedMessage.payload.card,
-                ticketLength = bingoTicket.length,
-                tickets = [];
+            //ticketLength = bingoTicket.length,
+            //tickets = [];
 
             //$scope.bingoStrip = [];
 

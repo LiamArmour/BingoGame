@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameProxy', ['$http', '$q','$state', 'ProxyConstants', function($http, $q, $state, proxyConstants){
+        .service('GameProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
             var me = this;
 
             me.callApi = function (apiName, action, data, token) {
