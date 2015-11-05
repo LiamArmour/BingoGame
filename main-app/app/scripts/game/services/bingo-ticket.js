@@ -27,7 +27,6 @@
                     endOfString += 30;
                 }
                 splitUpTheTicket(tickets[0]);
-                console.log(tickets);
             };
 
             var splitUpTheTicket = function (ticket) {

@@ -5,7 +5,6 @@
             var me = this;
 
             me.callApi = function (apiName, action, data, token) {
-                console.log(token);
                 var deferred = $q.defer();
                 var req = {
                     method: action,
