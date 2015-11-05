@@ -21,6 +21,9 @@
                         deferred.resolve(response.data);
                         me.returnedMessage = response.data;
                         $state.go(response.data.message);
+                        if(response.data.message == "TicketBought"){
+                            pushArray();
+                        }
                     }).catch(function (response) {
                         deferred.reject(response.data);
                         console.log('Error coming from proxy:' + response);

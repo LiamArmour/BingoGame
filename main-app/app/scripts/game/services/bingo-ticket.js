@@ -7,9 +7,7 @@
 
             var bingoTicket = gameModel.returnedMessage.payload.card,
                 ticketLength = bingoTicket.length,
-                tickets = [],
-                allTickets = [],
-                ticketGrid = [];
+                tickets = [];
 
             $scope.bingoStrip = [];
 
@@ -28,11 +26,11 @@
                     tickets.push(ticket.slice(startOfString, endOfString));
                     endOfString += 30;
                 }
+                },
+
+                pushArray = function (ticket) {
+
             };
-
-
-
-
 
         }]);
 })();
