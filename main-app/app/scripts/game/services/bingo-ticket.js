@@ -39,5 +39,12 @@
                 console.log(balls);
             };
 
+            //NOW WE NEED TO PUSH THESE TO THE BINGO BOARD
+            //{{strip[0][0]}}
+            //{{strip[1][0]}}
+            //{{strip[2][0]}}
+            //
+            //Colum one is stip number and next is cell number 0-8
+
         }]);
 })();
