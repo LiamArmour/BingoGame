@@ -30,7 +30,7 @@
                         });
                 };
 
-           me.nextButton = function (token) {
+            me.nextButton = function (token) {
                 callApi("game/next", "GET", "", token);
             };
 

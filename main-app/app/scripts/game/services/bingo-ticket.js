@@ -26,6 +26,7 @@
                     tickets.push(ticket.slice(startOfString, endOfString));
                     endOfString += 30;
                 }
+                console.log(tickets);
                 splitUpTheTicket(tickets[0]);
             };
 
@@ -36,7 +37,16 @@
                     balls.push(ticket.slice(startOfString, endOfString));
                     endOfString += 2;
                 }
+                pushBalls(balls);
                 console.log(balls);
+            };
+
+            var pushBalls = function(balls){
+                var ball;
+                console.log('im here in push balls');
+                for(ball in balls){
+                    console.log(balls[ball]);
+                }
             };
 
             //NOW WE NEED TO PUSH THESE TO THE BINGO BOARD
