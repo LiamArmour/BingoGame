@@ -15,7 +15,7 @@
                 },
 
                 removeFirstElement = function () {
-                    if(me.lastCallsDisplay.length >= 5){
+                    if(me.lastCallsDisplay.length >= 6){
                         me.lastCallsDisplay.splice(0, 1);
                     }
                 },
