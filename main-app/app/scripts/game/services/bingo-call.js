@@ -5,6 +5,7 @@
             var me = this;
 
             me.lastCalls = [];
+            me.lastCallsDisplay = [];
 
             var getCallData = {
                     gameId: 1,
@@ -13,13 +14,20 @@
                     callnumber: 0
                 },
 
+                removeFirstElement = function () {
+                    if(me.lastCallsDisplay.length >= 5){
+                        me.lastCallsDisplay.splice(0, 1);
+                    }
+                },
+
             makeApiCall = function(apiName, action, data, token){
                 gameProxy.callApi(apiName, action, data, token)
                     .then(function (data) {
                         me.callMessage = data;
                         me.lastCalls.push(data.payload.call);
+                        me.lastCallsDisplay.push(data.payload.call);
                         console.log(data);
-                        console.log(me.lastCalls);
+                        removeFirstElement();
                     }).catch(function (data) {
                         /* Error stub */
                         console.log(data);
