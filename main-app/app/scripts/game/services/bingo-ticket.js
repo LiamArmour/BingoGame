@@ -13,10 +13,6 @@
                 generateTheTicket(card);
             };
 
-            me.eightOrLess = function (number){
-                return number < 9 ? number: 8;
-            };
-
             var generateTheTicket = function (ticket) {
                 var startOfString = 0;
                 var endOfString = 30;
@@ -28,6 +24,10 @@
                 for(ticket in tickets){
                     splitUpTheTicket(tickets[ticket]);
                 }
+            };
+
+            me.eightOrLess = function (number){
+                return number < 9 ? number: 8;
             };
 
             var splitUpTheTicket = function (ticket) {
