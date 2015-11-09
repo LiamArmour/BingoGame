@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('BingoCall',  ['$timeout','BingoTicket','GameProxy', function ($timeout, bingoTicket, gameProxy) {
+        .service('BingoCall',  ['$interval','BingoTicket','GameProxy', function ($interval, bingoTicket, gameProxy) {
             var me = this,
                 getCallData = {
                     gameId: 1,
@@ -22,10 +22,13 @@
             };
 
             me.getCall = function (token) {
-                makeApiCall("game/getcall", "POST", getCallData, token);
-                //getCallData.callnumber += 1;
-                console.log(getCallData.callnumber);
-                //$timeout(me.getCall(token), 5000);
+                $interval(function(){
+                    makeApiCall("game/getcall", "POST", getCallData, token);
+                    //getCallData.callnumber += 1;
+                    console.log(getCallData.callnumber);
+                },5000, 1);
+
             };
+
         }]);
 })();
