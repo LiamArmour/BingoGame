@@ -17,7 +17,7 @@
                             console.log(data);
                             if(data.message == "TicketBought"){
                                 bingoTicket.pushArray(data.payload.card);
-                                bingoCall.getCall(token, 1);
+                                bingoCall.getCall(token);
                             }
                         }).catch(function (data) {
                             /* Error stub */

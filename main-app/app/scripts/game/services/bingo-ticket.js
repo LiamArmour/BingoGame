@@ -4,12 +4,17 @@
         .service('BingoTicket', [function() {
             var me = this;
             var tickets = [];
+            var lines = [];
 
             me.balls = [];
 
             me.pushArray = function (card) {
                 var cardss = "054963758028345266770611596982054963758028345266770611596982";
                 generateTheTicket(card);
+            };
+
+            me.eightOrLess = function (number){
+                return number < 9 ? number: 8;
             };
 
             var generateTheTicket = function (ticket) {
@@ -28,14 +33,17 @@
             var splitUpTheTicket = function (ticket) {
                 var startOfString = 0;
                 var endOfString = 2;
+                var i;
                 for(startOfString; startOfString < ticket.length; startOfString += 2){
-                    me.balls.push(ticket.slice(startOfString, endOfString));
+                    lines.push(ticket.slice(startOfString, endOfString));
                     endOfString += 2;
+                }
+                console.log(lines);
+                for(i = 0; i < lines.length; i++){
+                    me.balls[parseInt((9*(Math.floor(i/5))))+parseInt(me.eightOrLess(lines[i][0]))] = lines[i];
                 }
                 console.log(me.balls);
             };
-
-
 
         }]);
 })();
