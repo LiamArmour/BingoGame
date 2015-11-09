@@ -2,11 +2,12 @@
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
 
-        .controller('MainController', ['$scope','LoginApi','GameApi','LoginProxy','BingoTicket',  function($scope, loginApi, gameApi, loginProxy, bingoTicket) {
+        .controller('MainController', ['$scope','LoginApi','GameApi','LoginProxy','BingoTicket','BingoCall',  function($scope, loginApi, gameApi, loginProxy, bingoTicket, bingoCall) {
             $scope.gameTitle = 'tombola';
             $scope.model = loginProxy;
             $scope.gameModel = gameApi;
             $scope.bingoTicket = bingoTicket;
+            $scope.bingoCall = bingoCall;
 
             $scope.login = function (){
                 loginApi.loginButton($scope.username, $scope.password);
