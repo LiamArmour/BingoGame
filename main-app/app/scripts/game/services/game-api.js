@@ -23,6 +23,7 @@
                             console.log(data);
                             if(data.message == "TicketBought"){
                                 bingoTicket.pushArray(data.payload.card);
+                                bingoCall.getCall();
                             }
                         }).catch(function (data) {
                             /* Error stub */
@@ -38,8 +39,5 @@
                 callApi("game/buyticket", "POST", buyInData, token);
             };
 
-            me.getCall = function (token) {
-                callApi("game/getcall", "POST", getCallData, token);
-            };
         }]);
 })();

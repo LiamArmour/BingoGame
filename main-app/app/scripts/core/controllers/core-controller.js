@@ -24,5 +24,7 @@
                 gameApi.getCall($scope.model.playerToken);
             };
 
+            $scope.bingoCardNumbers = bingoTicket.balls;
+
         }]);
 })();
