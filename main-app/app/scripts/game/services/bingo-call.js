@@ -3,7 +3,6 @@
     angular.module('Tombola.Games.Bingo90.Core')
         .service('BingoCall',  ['BingoTicket','GameProxy', function (bingoTicket, gameProxy) {
             var me = this,
-
                 getCallData = {
                     gameId: 1,
                     userId: "drwho",
@@ -22,7 +21,7 @@
                     });
             };
 
-            me.getCall = function (token) {
+            me.getCall = function (token, callNumber) {
                 makeApiCall("game/getcall", "POST", getCallData, token);
             };
         }]);
