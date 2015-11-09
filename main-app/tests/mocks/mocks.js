@@ -10,6 +10,9 @@ var mocks;
         $state:{
             go: function () {},
             $current: 'playerSelection'
+        },
+        BingoTicket:{
+
         }
     };
 })();
