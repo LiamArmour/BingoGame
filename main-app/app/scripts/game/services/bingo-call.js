@@ -3,9 +3,7 @@
     angular.module('Tombola.Games.Bingo90.Core')
         .service('BingoCall',  ['$interval','BingoTicket','GameProxy', function ($interval, bingoTicket, gameProxy) {
             var me = this;
-
             me.lastCallsDisplay = [];
-
             var gameLoop,
                 getCallData = {
                     gameId: 1,
@@ -33,20 +31,20 @@
                     }
                 },
 
-            makeApiCall = function(apiName, action, data, token){
-                gameProxy.callApi(apiName, action, data, token)
-                    .then(function (data) {
-                        me.callMessage = data;
-                        me.lastCallsDisplay.push(data.payload.call);
-                        console.log(data);
-                        removeFirstElement();
-                        checkForLine(data);
-                        checkForHouse(data);
-                    }).catch(function (data) {
-                        /* Error stub */
-                        console.log(data);
-                    });
-            };
+                makeApiCall = function(apiName, action, data, token){
+                    gameProxy.callApi(apiName, action, data, token)
+                        .then(function (data) {
+                            me.callMessage = data;
+                            me.lastCallsDisplay.push(data.payload.call);
+                            console.log(data);
+                            removeFirstElement();
+                            checkForLine(data);
+                            checkForHouse(data);
+                        }).catch(function (data) {
+                            /* Error stub */
+                            console.log(data);
+                        });
+                };
 
             me.getCall = function (token) {
                 gameLoop = $interval(function(){

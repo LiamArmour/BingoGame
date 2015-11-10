@@ -28,9 +28,16 @@
     line-height: 51px;
 }
 .numbersLeft{
+    background-image: url('../images/to-go.png');
     height: 158px;
     width: 80px;
     float: right;
+    color: #ffffff;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 36px;
+    font-weight: bold;
     margin-top: 10px;
     margin-right: 10px;
 }
