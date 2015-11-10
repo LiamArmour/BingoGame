@@ -14,7 +14,6 @@
                             .then(function (data) {
                                 me.returnedMessage = data;
                                 $state.go(data.message);
-                                console.log(data);
                                 if(data.message == "TicketBought"){
                                     bingoTicket.pushArray(data.payload.card);
                                     bingoCall.getCall(token);

@@ -43,7 +43,6 @@
                         .then(function (data) {
                             me.callMessage = data;
                             me.lastCallsDisplay.push(data.payload.call);
-                            console.log(data);
                             removeFirstElement();
                             checkForLine(data);
                             checkForHouse(data);
