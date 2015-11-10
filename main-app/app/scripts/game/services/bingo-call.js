@@ -20,13 +20,13 @@
 
                 checkForLine = function (response) {
                     if(response.message === "Line"){
-                        alert('Line Prize' + response.payload.winnerInfo.linewinnername + response.payload.winnerInfo.lineprize);
+                        alert('--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
                     }
                 },
 
                 checkForHouse = function (response) {
                     if(response.message === "Winner"){
-                        alert('House Prize' + response.payload.winnerInfo.linewinnername + response.payload.winnerInfo.lineprize);
+                        alert('--House Prize\nWinner: ' + response.payload.winnerInfo.housewinnername + '\nAmount Won: ' + response.payload.winnerInfo.houseprize + '\n--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
                         gameEnded();
                     }
                 },
