@@ -6,7 +6,8 @@
 
             me.lastCallsDisplay = [];
 
-            var getCallData = {
+            var gameLoop,
+                getCallData = {
                     gameId: 1,
                     userId: "drwho",
                     balance: 100000000000,
@@ -28,7 +29,7 @@
                 checkForHouse = function (response) {
                     if(response.message === "Winner"){
                         alert('House Prize' + response.payload.winnerInfo.linewinnername + response.payload.winnerInfo.lineprize);
-                        $interval.cancel(me.getCall());
+                        $interval.cancel(gameLoop);
                     }
                 },
 
@@ -48,11 +49,10 @@
             };
 
             me.getCall = function (token) {
-                $interval(function(){
+                gameLoop = $interval(function(){
                     makeApiCall("game/getcall", "POST", getCallData, token);
                     getCallData.callnumber += 1;
-                    console.log(getCallData.callnumber);
-                },1000);
+                },1000, 90);
 
             };
 
