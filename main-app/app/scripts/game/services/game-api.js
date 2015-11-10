@@ -9,21 +9,21 @@
                     balance: 100000000000
                 },
 
-            callApi = function(apiName, action, data, token){
-                    gameProxy.callApi(apiName, action, data, token)
-                        .then(function (data) {
-                            me.returnedMessage = data;
-                            $state.go(data.message);
-                            console.log(data);
-                            if(data.message == "TicketBought"){
-                                bingoTicket.pushArray(data.payload.card);
-                                bingoCall.getCall(token);
-                            }
-                        }).catch(function (data) {
-                            /* Error stub */
-                            console.log(data);
-                        });
-                };
+                callApi = function(apiName, action, data, token){
+                        gameProxy.callApi(apiName, action, data, token)
+                            .then(function (data) {
+                                me.returnedMessage = data;
+                                $state.go(data.message);
+                                console.log(data);
+                                if(data.message == "TicketBought"){
+                                    bingoTicket.pushArray(data.payload.card);
+                                    bingoCall.getCall(token);
+                                }
+                            }).catch(function (data) {
+                                /* Error stub */
+                                console.log(data);
+                            });
+                    };
 
             me.nextButton = function (token) {
                 callApi("game/next", "GET", "", token);
