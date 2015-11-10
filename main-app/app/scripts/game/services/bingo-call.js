@@ -9,7 +9,7 @@
                     gameId: 1,
                     userId: "drwho",
                     balance: 100000000000,
-                    callnumber: 80
+                    callnumber: 0
                 },
 
                 removeFirstElement = function () {
