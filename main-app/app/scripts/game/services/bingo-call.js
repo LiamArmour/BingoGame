@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('BingoCall',  ['$interval','BingoTicket','GameProxy', function ($interval, bingoTicket, gameProxy) {
+        .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy', function ($interval, $state, bingoTicket, gameProxy) {
             var me = this;
             me.lastCallsDisplay = [];
             var gameLoop,
@@ -27,8 +27,15 @@
                 checkForHouse = function (response) {
                     if(response.message === "Winner"){
                         alert('House Prize' + response.payload.winnerInfo.linewinnername + response.payload.winnerInfo.lineprize);
-                        $interval.cancel(gameLoop);
+                        gameEnded();
                     }
+                },
+
+                gameEnded = function () {
+                    $interval.cancel(gameLoop);
+                    $interval(function(){
+                        $state.go('lobby');
+                    },5000, 1);
                 },
 
                 makeApiCall = function(apiName, action, data, token){
