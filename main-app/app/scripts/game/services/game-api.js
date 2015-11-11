@@ -17,5 +17,9 @@
             me.nextButton = function (token) {
                 callApi("game/next", "GET", "", token);
             };
+
+            me.logout = function (token) {
+                callApi("users/logout", "POST", "", token);
+            };
         }]);
 })();
