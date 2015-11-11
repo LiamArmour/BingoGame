@@ -15,8 +15,7 @@
             $scope.logout = function (){
                 gameApi.logout($scope.model.playerToken);
             };
-
-
+            
             $scope.nextGame = function (){
                 gameApi.nextButton($scope.model.playerToken);
             };
