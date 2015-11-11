@@ -32,8 +32,8 @@
             });
         });
 
-        it('Ensures the game title is correct', function () {
-            $scope.gameTitle.should.equal('tombola');
+        it('Ensures the login api can be called', function () {
+            $scope.loginApi.should.equal(mocks.LoginApi);
         });
 
         it.skip('Ensures the login works and changes the state', function () {
