@@ -1,0 +1,56 @@
+<nav>
+    <ul>
+        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{model.playerBalance}} </a></li>
+        <li><a ui-sref="#">Home</a></li>
+        <li><a ui-sref="#">Lobby</a></li>
+        <li><a ui-sref="#">My Account</a></li>
+        <li><a ui-sref="#">Logout</a></li>
+    </ul>
+</nav>
+<br>
+
+<div class="gameAbout" ng-controller="MainController">
+
+    <img src="images/bingo90.png">
+
+    <h3>Game ID: {{gameModel.returnedMessage.payload.gameId}}</h3>
+    TICKET: {{gameModel.returnedMessage.payload.card}} <br>
+    <br>
+
+        <div class="bingoBackground">
+            <div class="gameboard">
+                <div class="bingoCell textCenter">{{strip[0][0]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][1]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][2]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][3]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][4]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][5]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][6]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][7]}}</div>
+                <div class="bingoCell textCenter">{{strip[0][8]}}</div>
+
+                <div class="bingoCell textCenter">{{strip[1][0]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][1]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][2]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][3]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][4]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][5]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][6]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][7]}}</div>
+                <div class="bingoCell textCenter">{{strip[1][8]}}</div>
+
+                <div class="bingoCell borderBottom textCenter">{{strip[2][0]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][1]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][2]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][3]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][4]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][5]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][6]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][7]}}</div>
+                <div class="bingoCell borderBottom textCenter">{{strip[2][8]}}</div>
+            </div>
+            <div class="numbersLeft"><img src="images/togo.png"></div>
+        </div>
+
+</div>

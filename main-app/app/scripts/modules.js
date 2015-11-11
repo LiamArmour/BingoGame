@@ -19,6 +19,14 @@
             .state('lobby', {
                 url: "/lobby",
                 templateUrl: "partials/lobby.html"
+            })
+            .state('NextGame', {
+                url: "/nextGame",
+                templateUrl: "partials/nextgame.html"
+            })
+            .state('TicketBought', {
+                url: "/inGame",
+                templateUrl: "partials/inGame.html"
             });
 
     }]);
