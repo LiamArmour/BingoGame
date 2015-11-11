@@ -32,12 +32,17 @@
                 callApi("game/next", "GET", "", token);
             };
 
+<<<<<<< HEAD
             me.buyIn = function (token) {
                 callApi("game/buyticket", "POST", buyInData, token);
             };
 
             me.getCall = function (token) {
                 callApi("game/getcall", "POST", getCallData, token);
+=======
+            me.logout = function (token) {
+                callApi("users/logout", "POST", "", token);
+>>>>>>> master
             };
         }]);
 })();
