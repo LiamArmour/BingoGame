@@ -11,6 +11,10 @@
             $scope.login = function (){
                 loginApi.loginButton($scope.username, $scope.password);
             };
+            $scope.logout = function (){
+                gameApi.logout($scope.model.playerToken);
+            };
+
 
             $scope.nextGame = function (){
                 gameApi.nextButton($scope.loginProxy.playerToken);
