@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy', function ($interval, $state, bingoTicket, gameProxy) {
+        .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy','EndOfGame', function ($interval, $state, bingoTicket, gameProxy, endOfGame) {
             var me = this;
             me.lastCallsDisplay = [];
             var gameLoop,
@@ -18,34 +18,13 @@
                     }
                 },
 
-                checkForLine = function (response) {
-                    if(response.message === "Line"){
-                        alert('--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
-                    }
-                },
-
-                checkForHouse = function (response) {
-                    if(response.message === "Winner"){
-                        alert('--House Prize\nWinner: ' + response.payload.winnerInfo.housewinnername + '\nAmount Won: ' + response.payload.winnerInfo.houseprize + '\n--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
-                        gameEnded();
-                    }
-                },
-
-                gameEnded = function () {
-                    $interval.cancel(gameLoop);
-                    $interval(function(){
-                        $state.go('lobby');
-                    },5000, 1);
-                },
-
                 makeApiCall = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
                             me.callMessage = data;
                             me.lastCallsDisplay.push(data.payload.call);
                             removeFirstElement();
-                            checkForLine(data);
-                            checkForHouse(data);
+                            checkForWinner(data);
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
