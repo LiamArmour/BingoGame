@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{model.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{loginProxy.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{loginProxy.playerBalance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -28,7 +28,7 @@
                     <div class="currentCall">{{bingoCall.callMessage.payload.call}}</div>
                 </td>
                 <td width="148px">
-                    Game ID: {{gameModel.returnedMessage.payload.gameId}} Call: {{bingoCall.callMessage.payload.callnumber}}
+                    Game ID: {{gameApi.returnedMessage.payload.gameId}} Call: {{bingoCall.callMessage.payload.callnumber}}
                 </td>
             </tr>
         </table>

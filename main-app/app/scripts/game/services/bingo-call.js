@@ -24,7 +24,7 @@
                             me.callMessage = data;
                             me.lastCallsDisplay.push(data.payload.call);
                             removeFirstElement();
-                            checkForWinner(data);
+                            endOfGame.checkForWinner(data);
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
@@ -32,7 +32,7 @@
                 };
 
             me.getCall = function (token) {
-                gameLoop = $interval(function(){
+                me.gameLoop = $interval(function(){
                     makeApiCall("game/getcall", "POST", getCallData, token);
                     getCallData.callnumber += 1;
                 },1000, 90);

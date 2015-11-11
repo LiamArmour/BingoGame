@@ -6,24 +6,24 @@
 
             me.checkForWinner = function(response) {
                 if (response.message === "Line") {
-                    checkForLine(response);
+                    me.checkForLine(response);
                 }
                 if (response.message === "Winner") {
-                    checkForWinner(response);
+                    me.checkForHouse(response);
                 }
-            },
+            };
 
-            checkForLine = function(response) {
+            me.checkForLine = function(response) {
                 alert('--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
-            },
+            };
 
-            checkForHouse = function(response) {
+            me.checkForHouse = function(response) {
                 alert('--House Prize\nWinner: ' + response.payload.winnerInfo.housewinnername + '\nAmount Won: ' + response.payload.winnerInfo.houseprize + '\n--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
-                gameEnded();
-            },
+                me.gameEnded();
+            };
 
-            gameEnded = function() {
-                $interval.cancel(gameLoop);
+            me.gameEnded = function() {
+                $interval.cancel(me.gameLoop);
                 $interval(function() {
                     $state.go('lobby');
                 }, 5000, 1);

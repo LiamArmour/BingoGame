@@ -43,7 +43,6 @@
         });
 
         afterEach(function(){
-            //sandbox.restore();
         });
 
     });

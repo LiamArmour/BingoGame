@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{model.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{loginProxy.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{loginProxy.playerBalance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -26,6 +26,6 @@
     <br>
 
 
-    Token: {{model.playerToken}} <br> <br>
+    Token: {{loginProxy.playerToken}} <br> <br>
 
 </div>
