@@ -4,8 +4,7 @@
         .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy','EndOfGame', function ($interval, $state, bingoTicket, gameProxy, endOfGame) {
             var me = this;
             me.lastCallsDisplay = [];
-            var gameLoop,
-                getCallData = {
+            var getCallData = {
                     gameId: 1,
                     userId: "drwho",
                     balance: 100000000000,

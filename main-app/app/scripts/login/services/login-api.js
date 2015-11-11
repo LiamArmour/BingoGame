@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('LoginApi', ['LoginProxy', function (loginProxy) {
+        .service('LoginApi', ['$state','LoginProxy', function ($state, loginProxy) {
             var me = this,
                 createLoginData = function(usernameType, passwordType){
                     return {
@@ -13,7 +13,10 @@
                 callApiLogin = function(callName, requestData){
                     loginProxy.apiCallLogin(callName, requestData)
                         .then(function (data) {
-                            //updateCallback(data);
+                            me.playerBalance = data.payload.user.balance;
+                            me.playerToken = data.payload.user.token;
+                            me.playerUsername = data.payload.user.username;
+                            $state.go('lobby');
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
