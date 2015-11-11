@@ -13,6 +13,9 @@ var mocks;
         },
         BingoTicket:{
 
+        },
+        BingoCall:{
+
         }
     };
 })();

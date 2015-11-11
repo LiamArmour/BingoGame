@@ -4,7 +4,6 @@
     describe('Testing the main controller', function () {
         var $scope,
             controller,
-            sandbox,
             $rootScope,
             loginSpy,
             stateSpy;
@@ -25,9 +24,8 @@
                     $state:mocks.$state,
                     LoginApi: mocks.LoginApi,
                     GameApi: mocks.GameApi,
-                    LoginProxy: mocks.LoginProxy,
-                    GameProxy: mocks.GameProxy,
-                    BingoTicket: mocks.BingoTicket
+                    BingoTicket: mocks.BingoTicket,
+                    BingoCall: mocks.BingoCall
                 });
             });
         });
@@ -40,9 +38,6 @@
             $scope.login();
             loginSpy.should.have.been.calledOnce;
             stateSpy.should.have.been.calledOnce.calledWithExactly('lobby');
-        });
-
-        afterEach(function(){
         });
 
     });
