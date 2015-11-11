@@ -1,27 +1,24 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameApi',  ['GameProxy', function (gameProxy) {
+        .service('GameApi',  ['$state', 'GameProxy','BingoTicket','BingoCall', function ($state, gameProxy, bingoTicket, bingoCall) {
             var me = this,
                 buyInData = {
                     gameId: 1,
                     userId: "drwho",
-                    balance: 19990
+                    balance: 100000000000
                 },
-                getCallData = {
-                    gameId: 1,
-                    userId: "drwho",
-                    balance: 19990,
-                    callnumber: 1
-                },
-
-                //{gameId: config.game.gameId, card: config.game.card, user: player }
 
             callApi = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
+                            me.returnedMessage = data;
+                            $state.go(data.message);
                             console.log(data);
-                            //updateCallback(data);
+                            if(data.message == "TicketBought"){
+                                bingoTicket.pushArray(data.payload.card);
+                                bingoCall.getCall(token);
+                            }
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
@@ -37,6 +34,8 @@
                 callApi("game/buyticket", "POST", buyInData, token);
             };
 
+<<<<<<< HEAD
+=======
             me.getCall = function (token) {
                 callApi("game/getcall", "POST", getCallData, token);
 =======
@@ -44,5 +43,6 @@
                 callApi("users/logout", "POST", "", token);
 >>>>>>> master
             };
+>>>>>>> master
         }]);
 })();

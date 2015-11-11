@@ -26,7 +26,8 @@
                     LoginApi: mocks.LoginApi,
                     GameApi: mocks.GameApi,
                     LoginProxy: mocks.LoginProxy,
-                    GameProxy: mocks.GameProxy
+                    GameProxy: mocks.GameProxy,
+                    BingoTicket: mocks.BingoTicket
                 });
             });
         });

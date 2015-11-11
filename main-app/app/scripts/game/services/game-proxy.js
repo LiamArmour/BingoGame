@@ -1,11 +1,10 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameProxy', ['$http', '$q','$state', 'ProxyConstants', function($http, $q, $state, proxyConstants){
+        .service('GameProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
             var me = this;
 
             me.callApi = function (apiName, action, data, token) {
-                console.log(token);
                 var deferred = $q.defer();
                 var req = {
                     method: action,
@@ -19,8 +18,6 @@
                 $http(req).
                     then(function (response) {
                         deferred.resolve(response.data);
-                        me.returnedMessage = response.data;
-                        $state.go(response.data.message);
                     }).catch(function (response) {
                         deferred.reject(response.data);
                         console.log('Error coming from proxy:' + response);
