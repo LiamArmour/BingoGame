@@ -23,11 +23,8 @@
                         callNumber = "0"+callNumber.toString();
                     }
 
-                    console.log(callNumber);
-
                     if(bingoTicket.balls.indexOf(callNumber.toString()) !== -1){
                         bingoTicket.markedNumbers[bingoTicket.balls.indexOf(callNumber.toString())] = "markedCell";
-                        console.log(bingoTicket.balls.indexOf(callNumber.toString()));
                     }
                 },
 
