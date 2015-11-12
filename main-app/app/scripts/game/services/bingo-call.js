@@ -6,7 +6,7 @@
             me.lastCallsDisplay = [];
             var getCallData = {
                     gameId: 1,
-                    userId: "drwho",
+                    userId: loginApi.playerUsername,
                     balance: 100000000000,
                     callnumber: 0
                 },
