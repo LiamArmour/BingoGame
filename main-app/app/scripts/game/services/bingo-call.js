@@ -18,6 +18,10 @@
                     }
                 },
 
+                checkForNumber = function (callNumber) {
+                    console.log(callNumber);
+                },
+
                 makeApiCall = function(apiName, action, data, token){
                     gameProxy.callApi(apiName, action, data, token)
                         .then(function (data) {
@@ -25,6 +29,7 @@
                             me.lastCallsDisplay.push(data.payload.call);
                             removeFirstElement();
                             endOfGame.checkForWinner(data);
+                            checkForNumber(data.payload.call);
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);

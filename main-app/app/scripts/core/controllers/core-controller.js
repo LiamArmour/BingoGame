@@ -8,6 +8,7 @@
             $scope.bingoTicket = bingoTicket;
             $scope.bingoCall = bingoCall;
             $scope.bingoCardNumbers = bingoTicket.balls;
+            $scope.markedNumbers = bingoTicket.markedNumbers;
 
             $scope.login = function (){
                 loginApi.loginButton($scope.username, $scope.password);

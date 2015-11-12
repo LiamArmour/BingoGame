@@ -7,9 +7,14 @@
                 lines = [];
 
             me.balls = [];
+            me.markedNumbers = [];
 
             me.pushArray = function(card) {
-                var cardss = "054963758028345266770611596982054963758028345266770611596982";
+                var cardss = "054963758028345266770611596982054963758028345266770611596982",
+                    i;
+                for(i = 0; i < 27; i++){
+                    me.markedNumbers[i] = "bingoCell";
+                }
                 generateTheTicket(card);
             };
 
