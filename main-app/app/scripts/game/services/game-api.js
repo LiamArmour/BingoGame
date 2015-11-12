@@ -5,8 +5,7 @@
             var me = this,
                 buyInData = {
                     gameId: 1,
-                    //userId: sessionDetails.login.username,
-                    userId: "drwho",
+                    userId: sessionDetails.login.username,
                     balance: 100000
                 },
 
