@@ -19,9 +19,11 @@
                 },
 
                 checkForNumber = function (callNumber) {
-                    if(callNumber.length < 2){
-                        callNumber = 0+callNumber;
+                    if(callNumber.toString().length < 2){
+                        callNumber = "0"+callNumber.toString();
                     }
+
+                    console.log(callNumber);
 
                     if(bingoTicket.balls.indexOf(callNumber.toString()) !== -1){
                         bingoTicket.markedNumbers[bingoTicket.balls.indexOf(callNumber.toString())] = "markedCell";
