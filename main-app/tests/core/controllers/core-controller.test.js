@@ -25,13 +25,14 @@
                     LoginApi: mocks.LoginApi,
                     GameApi: mocks.GameApi,
                     BingoTicket: mocks.BingoTicket,
-                    BingoCall: mocks.BingoCall
+                    BingoCall: mocks.BingoCall,
+                    SessionDetails: mocks.SessionDetails
                 });
             });
         });
 
         it('Ensures the login api can be called', function () {
-            $scope.loginApi.should.equal(mocks.LoginApi);
+            $scope.gameApi.should.equal(mocks.GameApi);
         });
 
         it.skip('Ensures the login works and changes the state', function () {

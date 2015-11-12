@@ -1,13 +1,14 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy','EndOfGame', function ($interval, $state, bingoTicket, gameProxy, endOfGame) {
-            var me = this;
+        .service('BingoCall',  ['$interval','$state','BingoTicket','GameProxy','EndOfGame','SessionDetails', function ($interval, $state, bingoTicket, gameProxy, endOfGame, sessionDetails) {
+            var me = this,
+                sessionDetailsLogin = sessionDetails.login;
             me.lastCallsDisplay = [];
             var getCallData = {
                     gameId: 1,
-                    userId: loginApi.playerUsername,
-                    balance: 100000000000,
+                    userId: sessionDetailsLogin.username,
+                    balance: sessionDetailsLogin.balance,
                     callnumber: 0
                 },
 

@@ -1,12 +1,12 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameApi',  ['$state', 'GameProxy','BingoTicket','BingoCall', function ($state, gameProxy, bingoTicket, bingoCall) {
+        .service('GameApi',  ['$state', 'GameProxy','BingoTicket','BingoCall','SessionDetails', function ($state, gameProxy, bingoTicket, bingoCall, sessionDetails) {
             var me = this,
                 buyInData = {
                     gameId: 1,
-                    userId: "drwho",
-                    balance: 100000000000
+                    userId: sessionDetails.login.username,
+                    balance: 100000
                 },
 
                 callApi = function(apiName, action, data, token){
@@ -30,10 +30,6 @@
 
             me.buyIn = function (token) {
                 callApi("game/buyticket", "POST", buyInData, token);
-            };
-
-            me.getCall = function (token) {
-                callApi("game/getcall", "POST", getCallData, token);
             };
 
             me.logout = function (token) {

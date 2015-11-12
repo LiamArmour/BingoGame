@@ -7,6 +7,12 @@ var mocks;
             callApiLogin: function(callName, requestData){},
             loginButton: function (usernameType, passwordType) {}
         },
+        GameApi: {
+            nextButton: function (token) {},
+            buyIn: function (token) {},
+            getCall: function (token) {},
+            logout: function (token) {}
+        },
         $state:{
             go: function () {},
             $current: 'playerSelection'
@@ -15,6 +21,9 @@ var mocks;
 
         },
         BingoCall:{
+
+        },
+        SessionDetails:{
 
         }
     };
