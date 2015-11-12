@@ -14,19 +14,19 @@
             };
 
             $scope.logout = function (){
-                gameApi.logout($scope.model.playerToken);
+                gameApi.logout($scope.loginApi.playerToken);
             };
 
             $scope.nextGame = function (){
-                gameApi.nextButton($scope.loginProxy.playerToken);
+                gameApi.nextButton($scope.loginApi.playerToken);
             };
 
             $scope.buyInGame = function (){
-                gameApi.buyIn($scope.loginProxy.playerToken);
+                gameApi.buyIn($scope.loginApi.playerToken);
             };
 
             $scope.getFirstCall = function (){
-                gameApi.getCall($scope.loginProxy.playerToken);
+                gameApi.getCall($scope.loginApi.playerToken);
             };
 
         }]);

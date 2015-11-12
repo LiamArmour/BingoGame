@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{loginProxy.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{loginProxy.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{loginApi.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{loginApi.playerBalance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -21,6 +21,6 @@
     <img src="images/tickets.png" ng-click="buyInGame()"> <br>
 
     The next game starts in: {{gameApi.returnedMessage.payload.start}}<br>
-    New Account Balance: {{loginProxy.playerBalance}}
+    New Account Balance: {{loginApi.playerBalance}}
 
 </div>
