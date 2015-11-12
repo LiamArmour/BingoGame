@@ -19,9 +19,17 @@
                 },
 
                 checkForNumber = function (callNumber) {
-                    console.log(callNumber);
-                    console.log('does this number live on this line?');
-                    console.log(bingoTicket.balls);
+                    if(callNumber.toString().length <2){
+                        return "0"+callNumber.toString();
+                    }
+                    else {
+                        return callNumber;
+                    }
+
+                    if(bingoTicket.balls.indexOf(callNumber.toString()) !== -1){
+                        bingoTicket.markedNumbers[bingoTicket.balls.indexOf(callNumber.toString())] = "markedCell";
+                        console.log(bingoTicket.balls.indexOf(callNumber.toString()));
+                    }
                 },
 
                 makeApiCall = function(apiName, action, data, token){
