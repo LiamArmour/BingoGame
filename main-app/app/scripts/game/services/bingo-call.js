@@ -19,11 +19,8 @@
                 },
 
                 checkForNumber = function (callNumber) {
-                    if(callNumber.toString().length <2){
-                        return "0"+callNumber.toString();
-                    }
-                    else {
-                        return callNumber;
+                    if(callNumber.length < 2){
+                        callNumber = 0+callNumber;
                     }
 
                     if(bingoTicket.balls.indexOf(callNumber.toString()) !== -1){
