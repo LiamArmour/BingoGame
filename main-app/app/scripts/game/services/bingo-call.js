@@ -20,6 +20,8 @@
 
                 checkForNumber = function (callNumber) {
                     console.log(callNumber);
+                    console.log('does this number live on this line?');
+                    console.log(bingoTicket.balls);
                 },
 
                 makeApiCall = function(apiName, action, data, token){
