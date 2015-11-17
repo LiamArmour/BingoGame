@@ -9,6 +9,8 @@
             loginSpy,
             logoutSpy,
             nextGameSpy,
+            buyInGameSpy,
+            getCallSpy,
             sandbox;
 
         beforeEach(function () {
@@ -42,6 +44,8 @@
             loginSpy = sinon.sandbox.spy(mocks.LoginApi, 'loginButton');
             logoutSpy = sinon.sandbox.spy(mocks.GameApi, 'logout');
             nextGameSpy = sinon.sandbox.spy(mocks.GameApi, 'nextButton');
+            buyInGameSpy = sinon.sandbox.spy(mocks.GameApi, 'buyIn');
+            getCallSpy = sinon.sandbox.spy(mocks.GameApi, 'getCall');
         });
 
         it('Ensures the login works and changes the state', function () {
@@ -59,6 +63,16 @@
             nextGameSpy.should.have.been.calledOnce;
         });
 
+        it('Ensures the buy in game button works', function () {
+            $scope.buyInGame();
+            buyInGameSpy.should.have.been.calledOnce;
+        });
+
+        it('Ensures the get first call works', function () {
+            $scope.getFirstCall();
+            getCallSpy.should.have.been.calledOnce;
+        });
+
         afterEach(function () {
             sandbox.restore();
         });
@@ -66,12 +80,3 @@
     });
 
 })();
-
-
-//    $scope.buyInGame = function (){
-//        gameApi.buyIn($scope.sessionDetailsLogin.token);
-//    };
-//
-//    $scope.getFirstCall = function (){
-//        gameApi.getCall($scope.sessionDetailsLogin.token);
-//    };
