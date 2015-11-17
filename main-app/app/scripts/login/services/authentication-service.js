@@ -11,7 +11,7 @@
                     };
                 },
 
-                callApiLogin = function(callName, requestData){
+                callApi = function(callName, requestData){
                     authenticationProxy.apiCallLogin(callName, requestData)
                         .then(function (data) {
                             //TODO: convert into friendly object in auth proxy.
@@ -33,15 +33,12 @@
             };
 
             me.logout = function(){
-                //TODO: wrote logout method like logon above, on authentictionProxy
-                //authProxy.logout(getToken())
-                //callApi("users/logout", "POST", "", token);
-
+                callApi("users/logout", "POST", "", me.get());
                 currentToken = '';
             };
 
             me.login = function (usernameType, passwordType) {
-                callApiLogin("users/login", createLoginData(usernameType, passwordType));
+                callApi("users/login", createLoginData(usernameType, passwordType));
             };
 
         }]);
