@@ -23,10 +23,10 @@
                             console.log(data);
                         });
                 };
+
             me.getToken = function(){
               return currentToken;
             };
-
 
             me.isAuthenticated = function(){
                 return currentToken !== '';
