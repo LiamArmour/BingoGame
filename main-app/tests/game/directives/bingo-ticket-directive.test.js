@@ -20,7 +20,7 @@
 
             var subElement = element.find('div');
 
-            subElement.attr('ng-class').should.equal('bingoCell');
+            subElement.attr('ng-class').should.equal('markedNumbers4');
             subElement.attr('ng-click').should.equal(4);
         });
 
