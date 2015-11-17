@@ -18,12 +18,17 @@ var mocks;
             $current: 'playerSelection'
         },
         BingoTicket:{
-
+            balls: [],
+            markedNumbers: [],
+            pushArray: function () {},
         },
         BingoCall:{
 
         },
         SessionDetails:{
+
+        },
+        BingoCardNumbers:{
 
         }
     };
