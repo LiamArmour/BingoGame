@@ -28,8 +28,8 @@
                     gameId: 1,
                     userId: sessionDetails.login.username,
                     balance: sessionDetails.login.balance
-                };
-                callApi("game/buyticket", "POST", buyInData, token);
+                    };
+                    callApi("game/buyticket", "POST", buyInData, token);
             };
 
             me.logout = function (token) {
