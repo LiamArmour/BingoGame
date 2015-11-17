@@ -8,6 +8,7 @@
             $rootScope,
             loginSpy,
             logoutSpy,
+            nextGameSpy,
             sandbox;
 
         beforeEach(function () {
@@ -40,6 +41,7 @@
             sandbox = sinon.sandbox.create();
             loginSpy = sinon.sandbox.spy(mocks.LoginApi, 'loginButton');
             logoutSpy = sinon.sandbox.spy(mocks.GameApi, 'logout');
+            nextGameSpy = sinon.sandbox.spy(mocks.GameApi, 'nextButton');
         });
 
         it('Ensures the login works and changes the state', function () {
@@ -47,9 +49,14 @@
             loginSpy.should.have.been.calledOnce.calledWithExactly('username', 'password');
         });
 
-        it.skip('Ensures the logout works and retuns to login', function () {
+        it('Ensures the logout works and retuns to login', function () {
             $scope.logout();
             logoutSpy.should.have.been.calledOnce;
+        });
+
+        it('Ensures the next game button works', function () {
+            $scope.nextGame();
+            nextGameSpy.should.have.been.calledOnce;
         });
 
         afterEach(function () {
@@ -61,18 +68,6 @@
 })();
 
 
-//    $scope.login = function (){
-//        loginApi.loginButton($scope.username, $scope.password);
-//    };
-//
-//    $scope.logout = function (){
-//        gameApi.logout($scope.sessionDetailsLogin.token);
-//    };
-//
-//    $scope.nextGame = function (){
-//        gameApi.nextButton($scope.sessionDetailsLogin.token);
-//    };
-//
 //    $scope.buyInGame = function (){
 //        gameApi.buyIn($scope.sessionDetailsLogin.token);
 //    };
