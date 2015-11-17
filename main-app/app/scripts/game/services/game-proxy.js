@@ -1,17 +1,17 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
+        .service('GameProxy', ['$http', '$q', 'ProxyConstants', 'AuthenticationService', function($http, $q, proxyConstants, authenticationService){
             var me = this;
 
-            me.callApi = function (apiName, action, data, token) {
+            me.callApi = function (apiName, action, data) {
                 var deferred = $q.defer();
                 var req = {
                     method: action,
                     url: proxyConstants.baseURL + apiName,
                     data: data,
                     headers: {
-                        'x-token': token,
+                        'x-token': authenticationService.getToken,
                         'content-type': 'application/json'
                     }
                 };

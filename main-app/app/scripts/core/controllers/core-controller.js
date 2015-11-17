@@ -15,19 +15,19 @@
             };
 
             $scope.logout = function (){
-                gameApi.logout($scope.sessionDetailsLogin.token);
+                gameApi.logout();
             };
 
             $scope.nextGame = function (){
-                gameApi.nextButton($scope.sessionDetailsLogin.token);
+                gameApi.nextButton();
             };
 
             $scope.buyInGame = function (){
-                gameApi.buyIn($scope.sessionDetailsLogin.token);
+                gameApi.buyIn();
             };
 
             $scope.getFirstCall = function (){
-                gameApi.getCall($scope.sessionDetailsLogin.token);
+                gameApi.getCall();
             };
 
         }]);

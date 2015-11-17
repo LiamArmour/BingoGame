@@ -7,66 +7,52 @@
             controller,
             $rootScope,
             loginSpy,
-            stateSpy,
-            sandbox,
-            gameApi,
-            bingoTicket,
-            bingoCall,
-            sessionDetails;
+            logoutSpy,
+            sandbox;
 
-        beforeEach(function(){
+        beforeEach(function () {
             module('ui.router');
             module('Tombola.Games.Bingo90.Core');
+            module(function ($provide) {
 
-            loginSpy = sinon.sandbox.spy(mocks.LoginApi, 'loginButton');
-            stateSpy = sinon.sandbox.spy(mocks.$state, 'go');
+                $provide.value('LoginApi', mocks.LoginApi);
+                $provide.value('GameApi', mocks.GameApi);
+
+                //These need proper mocks if not already written
+                $provide.value('SessionDetails', {});
+                $provide.value('BingoTicket', {});
+                $provide.value('BingoCall', {});
+            });
+
 
             inject(function (_$rootScope_, _$controller_) {
                 $rootScope = _$rootScope_;
                 $scope = $rootScope.$new();
                 $controller = _$controller_;
+                $scope.username='username';
+                $scope.password = 'password';
 
                 controller = $controller('MainController', {
-                    $scope: $scope,
-                    $state: mocks.$state
+                    $scope: $scope
                 });
-
             });
+
             sandbox = sinon.sandbox.create();
-            gameApi = sinon.sandbox.mock(mocks.gameApi);
-            bingoTicket = sinon.sandbox.mock(mocks.bingoTicket);
-            bingoCall = sinon.sandbox.mock(mocks.bingoCall);
-            sessionDetails = sinon.sandbox.mock(mocks.sessionDetails);
-
-            controller.gameApi = mocks.GameApi;
-            controller.bingoTicket = mocks.BingoTicket;
-            controller.bingoCall = mocks.BingoCall;
-            controller.sessionDetails = mocks.SessionDetails;
-        });
-
-        it('Ensures the login api can be called', function () {
-            controller.gameApi.should.equal(mocks.GameApi);
-        });
-
-        it('Ensures the bingo ticket can be called', function () {
-            controller.bingoTicket.should.equal(mocks.BingoTicket);
-        });
-
-        it('Ensures the bingo call can be called', function () {
-            controller.bingoCall.should.equal(mocks.BingoCall);
-        });
-
-        it('Ensures the bingo call can be called', function () {
-            controller.sessionDetails.should.equal(mocks.SessionDetails);
+            loginSpy = sinon.sandbox.spy(mocks.LoginApi, 'loginButton');
+            logoutSpy = sinon.sandbox.spy(mocks.GameApi, 'logout');
         });
 
         it('Ensures the login works and changes the state', function () {
             $scope.login();
-            loginSpy.should.have.been.calledOnce;
-            stateSpy.should.have.been.calledOnce.calledWithExactly('lobby');
+            loginSpy.should.have.been.calledOnce.calledWithExactly('username', 'password');
         });
 
-        afterEach(function(){
+        it.skip('Ensures the logout works and retuns to login', function () {
+            $scope.logout();
+            logoutSpy.should.have.been.calledOnce;
+        });
+
+        afterEach(function () {
             sandbox.restore();
         });
 

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('LoginProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
+        .service('AuthenticationProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
             var me = this;
 
             me.apiCallLogin = function(apiName, data){
@@ -16,6 +16,5 @@
 
                 return defered.promise;
             };
-
         }]);
 })();
