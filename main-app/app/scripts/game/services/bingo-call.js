@@ -44,8 +44,8 @@
             me.getCall = function () {
                 var getCallData = {
                     gameId: 1,
-                    userId: coreApiConverter.logindata.userinfo.username,
-                    balance: coreApiConverter.logindata.userinfo.balance,
+                    userId: coreApiConverter.loginData.userinfo.username,
+                    balance: coreApiConverter.loginData.userinfo.balance,
                     callnumber: 0
                 };
                 me.gameLoop = $interval(function () {

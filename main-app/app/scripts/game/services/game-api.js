@@ -32,8 +32,8 @@
                 //Todo: expose butTicket on game proxy
                 var buyInData = {
                     gameId: 1,
-                    userId: coreApiConverter.logindata.userinfo.username,
-                    balance: coreApiConverter.logindata.userinfo.balance
+                    userId: coreApiConverter.loginData.userinfo.username,
+                    balance: coreApiConverter.loginData.userinfo.balance
                 };
                 callApi("game/buyticket", "POST", buyInData);
             };
