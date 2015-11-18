@@ -42,7 +42,10 @@
                     var ticketPurchaseData = {
                         gameid: response.payload.gameId,
                         ticketinfo: {
-                            ticket: response.payload.card
+                            ticket: response.payload.card,
+                            updateduser: {
+                                balance: response.payload.user.balance
+                            }
                         }
                     };
                     console.log(ticketPurchaseData);
