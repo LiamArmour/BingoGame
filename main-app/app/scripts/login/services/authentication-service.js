@@ -3,7 +3,6 @@
     angular.module('Tombola.Games.Bingo90.Core')
         .service('AuthenticationService', ['$state','AuthenticationProxy','SessionDetails', function ($state, authenticationProxy, sessionDetails) {
             var me = this,
-                currentToken = '',
                 createLoginData = function(usernameType, passwordType){
                     return {
                         "username": usernameType,
@@ -24,17 +23,19 @@
                         });
                 };
 
+            me.currentToken = '';
+
             me.getToken = function(){
-              return currentToken;
+              return me.currentToken;
             };
 
             me.isAuthenticated = function(){
-                return currentToken !== '';
+                return me.currentToken !== '';
             };
 
             me.logout = function(){
                 callApi("users/logout", "POST", "", me.get());
-                currentToken = '';
+                me.currentToken = '';
             };
 
             me.login = function (usernameType, passwordType) {

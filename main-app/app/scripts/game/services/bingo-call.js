@@ -7,8 +7,8 @@
             me.lastCallsDisplay = [];
             var getCallData = {
                     gameId: 1,
-                    userId: sessionDetailsLogin.username,
-                    balance: sessionDetailsLogin.balance,
+                    userId: sessionDetails.login.username,
+                    balance: sessionDetails.login.balance,
                     callnumber: 0
                 },
 
@@ -28,8 +28,8 @@
                     }
                 },
 
-                makeApiCall = function(apiName, action, data, token){
-                    gameProxy.callApi(apiName, action, data, token)
+                makeApiCall = function(apiName, action, data){
+                    gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
                             me.callMessage = data;
                             me.lastCallsDisplay.push(data.payload.call);
@@ -42,9 +42,9 @@
                         });
                 };
 
-            me.getCall = function (token) {
+            me.getCall = function () {
                 me.gameLoop = $interval(function(){
-                    makeApiCall("game/getcall", "POST", getCallData, token);
+                    makeApiCall("game/getcall", "POST", getCallData);
                     getCallData.callnumber += 1;
                 },1000, 90);
 
