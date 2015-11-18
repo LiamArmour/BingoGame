@@ -2,10 +2,10 @@ var mocks;
 (function () {
     'use strict';
     mocks = {
-        LoginApi: {
+        AuthenticationService: {
             createLoginData: function(usernameType, passwordType){},
             callApiLogin: function(callName, requestData){},
-            loginButton: function (usernameType, passwordType) {}
+            login: function (usernameType, passwordType) {}
         },
         GameApi: {
             nextButton: function (token) {},
