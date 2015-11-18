@@ -6,9 +6,21 @@
                 var me = this;
                 me.convertLoginData = function (response) {
                     var userData = {
-                        username: response.payload.user.username,
-                        balance: response.payload.user.balance,
-                        token: response.payload.user.token
+                        token: response.payload.user.token,
+                        userinfo: {
+                            username: response.payload.user.username,
+                            balance: response.payload.user.balance,
+                        }
+                    };
+                };
+
+                me.convertNextGameData = function (response) {
+                    var nextGameData = {
+                        nextgame: response.payload.start,
+                        gameinfo: {
+                            gameid: response.payload.gameId,
+                            ticketprice: response.payload.ticketprice,
+                        }
                     };
                 };
             }]);
