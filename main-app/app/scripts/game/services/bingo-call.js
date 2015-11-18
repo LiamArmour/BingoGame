@@ -45,6 +45,7 @@
             me.getCall = function () {
                 me.gameLoop = $interval(function(){
                     makeApiCall("game/getcall", "POST", getCallData);
+                    console.log(getCallData);
                     getCallData.callnumber += 1;
                 },1000, 90);
 
