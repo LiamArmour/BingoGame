@@ -15,7 +15,7 @@
                         .then(function (data) {
                             //TODO: convert into friendly object in auth proxy.
                             sessionDetails.login = data.payload.user;
-                            loginConverter.convertLoginData(data.payload.user);
+                            loginConverter.convertLoginData(data);
                             me.currentToken = data.payload.user.token;
                             $state.go('lobby');
                         }).catch(function (data) {

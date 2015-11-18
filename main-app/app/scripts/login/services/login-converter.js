@@ -7,9 +7,9 @@
 
                 me.convertLoginData = function (response) {
                     var userData = {
-                        username: response.username,
-                        balance: response.balance,
-                        token: response.token
+                        username: response.payload.user.username,
+                        balance: response.payload.user.balance,
+                        token: response.payload.user.token
                     };
 
                     console.log(userData);
