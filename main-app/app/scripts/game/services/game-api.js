@@ -9,7 +9,6 @@
                     gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
                             me.returnedMessage = data;
-                            console.log(sessionDetails.login);
                             $state.go(data.message);
                             if (data.message == "TicketBought") {
                                 bingoTicket.pushArray(data.payload.card);
@@ -33,9 +32,6 @@
                     userId: sessionDetails.login.username,
                     balance: sessionDetails.login.balance
                 };
-                console.log(buyInData);
-                console.log(sessionDetails.login.username);
-                console.log(sessionDetails.login.balance);
                 callApi("game/buyticket", "POST", buyInData);
             };
         }]);

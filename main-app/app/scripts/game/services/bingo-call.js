@@ -5,14 +5,8 @@
             var me = this,
                 sessionDetailsLogin = sessionDetails.login;
             me.lastCallsDisplay = [];
-            var getCallData = {
-                    gameId: 1,
-                    userId: sessionDetails.login.username,
-                    balance: sessionDetails.login.balance,
-                    callnumber: 0
-                },
 
-                removeFirstElement = function () {
+            var removeFirstElement = function () {
                     if(me.lastCallsDisplay.length >= 6){
                         me.lastCallsDisplay.splice(0, 1);
                     }
@@ -43,9 +37,14 @@
                 };
 
             me.getCall = function () {
+                var getCallData = {
+                    gameId: 1,
+                    userId: sessionDetails.login.username,
+                    balance: sessionDetails.login.balance,
+                    callnumber: 0
+                };
                 me.gameLoop = $interval(function(){
                     makeApiCall("game/getcall", "POST", getCallData);
-                    console.log(getCallData);
                     getCallData.callnumber += 1;
                 },1000, 90);
 
