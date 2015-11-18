@@ -3,7 +3,7 @@
 
     angular.module('Tombola.Games.Bingo90.Core')
         .constant('ProxyConstants', {
-            baseURL : "http://localhost:30069/"
+            baseURL : "http://eutaveg-01.tombola.emea:30069/"
         });
 
 })();

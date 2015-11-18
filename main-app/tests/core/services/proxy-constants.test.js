@@ -10,7 +10,7 @@
         });
 
         it('Ensures the string is equal to the correct url', function () {
-            constants.baseURL.should.equal('http://localhost:30069/');
+            constants.baseURL.should.equal('http://eutaveg-01.tombola.emea:30069/');
         });
 
     });

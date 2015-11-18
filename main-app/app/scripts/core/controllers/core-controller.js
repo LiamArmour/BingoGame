@@ -2,7 +2,7 @@
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
 
-        .controller('MainController', ['$scope','LoginApi','SessionDetails','GameApi','BingoTicket','BingoCall',  function($scope, loginApi, sessionDetails, gameApi, bingoTicket, bingoCall) {
+        .controller('MainController', ['$scope','AuthenticationService','SessionDetails','GameApi','BingoTicket','BingoCall',  function($scope, authenticationService, sessionDetails, gameApi, bingoTicket, bingoCall) {
             $scope.sessionDetailsLogin = sessionDetails.login;
             $scope.gameApi = gameApi;
             $scope.bingoTicket = bingoTicket;
@@ -11,7 +11,7 @@
             $scope.markedNumbers = bingoTicket.markedNumbers;
 
             $scope.login = function (){
-                loginApi.loginButton($scope.username, $scope.password);
+                authenticationService.login($scope.username, $scope.password);
             };
 
             $scope.logout = function (){

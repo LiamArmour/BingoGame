@@ -12,7 +12,7 @@
             });
         });
 
-        it('Ensure that the bingo ticket contains data for cell 4', function() {
+        it.skip('Ensure that the bingo ticket contains data for cell 4', function() {
             var directiveElement = '<div ng-class="bingoCell" ng-click="4"></div>';
 
             var element = $compile(directiveElement)($rootScope);
