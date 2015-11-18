@@ -10,7 +10,9 @@
                         username: response.username,
                         balance: response.balance,
                         token: response.token
-                    }
+                    };
+
+                    console.log(userData);
                 };
 
             }]);
