@@ -18,7 +18,7 @@
             module('Tombola.Games.Bingo90.Core');
             module(function ($provide) {
 
-                $provide.value('LoginApi', mocks.LoginApi);
+                $provide.value('AuthenticationService', mocks.AuthenticationService);
                 $provide.value('GameApi', mocks.GameApi);
 
                 //These need proper mocks if not already written
@@ -41,7 +41,7 @@
             });
 
             sandbox = sinon.sandbox.create();
-            loginSpy = sinon.sandbox.spy(mocks.LoginApi, 'loginButton');
+            loginSpy = sinon.sandbox.spy(mocks.AuthenticationService, 'login');
             logoutSpy = sinon.sandbox.spy(mocks.GameApi, 'logout');
             nextGameSpy = sinon.sandbox.spy(mocks.GameApi, 'nextButton');
             buyInGameSpy = sinon.sandbox.spy(mocks.GameApi, 'buyIn');
