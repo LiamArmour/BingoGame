@@ -48,7 +48,7 @@
                             }
                         }
                     };
-                    return ticketPurchaseData;
+                    me.ticketData = ticketPurchaseData;
                 };
 
             }]);
