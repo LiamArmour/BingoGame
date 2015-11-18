@@ -2,8 +2,8 @@
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
         .service('GameApi',
-        ['$state', 'GameProxy', 'BingoTicket', 'BingoCall', 'SessionDetails','CoreApiConverter', function ($state, gameProxy, bingoTicket,
-                                                                                        bingoCall, sessionDetails, coreApiConverter) {
+        ['$state', 'GameProxy', 'BingoTicket', 'BingoCall','CoreApiConverter', function ($state, gameProxy, bingoTicket,
+                                                                                        bingoCall, coreApiConverter) {
             var me = this,
                 callApi = function (apiName, action, data) {
                     gameProxy.callApi(apiName, action, data)
@@ -32,8 +32,8 @@
                 //Todo: expose butTicket on game proxy
                 var buyInData = {
                     gameId: 1,
-                    userId: sessionDetails.login.username,
-                    balance: sessionDetails.login.balance
+                    userId: coreApiConverter.logindata.userinfo.username,
+                    balance: coreApiConverter.logindata.userinfo.balance
                 };
                 callApi("game/buyticket", "POST", buyInData);
             };

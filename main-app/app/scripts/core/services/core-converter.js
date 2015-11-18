@@ -12,7 +12,7 @@
                         me.convertNextGameData(response);
                     }
                     else if(response.message === "TicketBought"){
-                            me.convertTicketPurchaseData(response);
+                        me.convertTicketPurchaseData(response);
                     }
                 };
 
@@ -24,7 +24,7 @@
                             balance: response.payload.user.balance
                         }
                     };
-                    console.log(userData);
+                    me.loginData = userData;
                 };
 
                 me.convertNextGameData = function (response) {
@@ -35,7 +35,7 @@
                             ticketprice: response.payload.ticketprice
                         }
                     };
-                    console.log(nextGameData);
+                    me.nextGameData = nextGameData;
                 };
 
                 me.convertTicketPurchaseData = function (response) {
@@ -48,7 +48,7 @@
                             }
                         }
                     };
-                    console.log(ticketPurchaseData);
+                    return ticketPurchaseData;
                 };
 
             }]);
