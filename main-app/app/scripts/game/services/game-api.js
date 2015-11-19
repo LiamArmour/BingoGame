@@ -8,10 +8,7 @@
                 callApi = function (apiName, action, data) {
                     gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
-                            me.returnedMessage = data;
-
                             coreApiConverter.convert(data);
-
                             $state.go(data.message);
                             if (data.message == "TicketBought") {
                                 bingoTicket.pushArray(data.payload.card);
