@@ -7,16 +7,10 @@
                 me.convert = function (response) {
                     if (response.message === "LoginSuccess") {
                         me.convertLoginData(response);
-                    }
-                    else {
-                        if (response.message === "NextGame") {
-                            me.convertNextGameData(response);
-                        }
-                        else {
-                            if (response.message === "TicketBought") {
-                                me.convertTicketPurchaseData(response);
-                            }
-                        }
+                    } else if (response.message === "NextGame") {
+                        me.convertNextGameData(response);
+                    } else if (response.message === "TicketBought") {
+                        me.convertTicketPurchaseData(response);
                     }
                 };
 
