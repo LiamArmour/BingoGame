@@ -6,18 +6,19 @@
 
             me.checkForWinner = function(response) {
                 if (response.message === "Line") {
-                    me.checkForLine(response);
+                    me.checkForLineAlert(response);
                 }
                 if (response.message === "Winner") {
-                    me.checkForHouse(response);
+                    me.checkForHouseAlert(response);
                 }
             };
 
-            me.checkForLine = function(response) {
+            //todo: i need a better way for this
+            me.checkForLineAlert = function(response) {
                 alert('--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
             };
 
-            me.checkForHouse = function(response) {
+            me.checkForHouseAlert = function(response) {
                 alert('--House Prize\nWinner: ' + response.payload.winnerInfo.housewinnername + '\nAmount Won: ' + response.payload.winnerInfo.houseprize + '\n--Line Prize\nWinner: ' + response.payload.winnerInfo.linewinnername + '\nAmount Won: ' + response.payload.winnerInfo.lineprize);
                 me.gameEnded();
             };

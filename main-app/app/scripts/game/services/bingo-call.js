@@ -9,7 +9,8 @@
                                                                                                        endOfGame,
                                                                                                        coreApiConverter) {
             var me = this,
-                removeFirstElement = function () {
+                lastCalls = function (calls) {
+                    me.lastCallsDisplay.push(calls);
                     if (me.lastCallsDisplay.length >= 6) {
                         me.lastCallsDisplay.splice(0, 1);
                     }
@@ -29,8 +30,7 @@
                     gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
                             me.callMessage = data;
-                            me.lastCallsDisplay.push(data.payload.call);
-                            removeFirstElement();
+                            lastCalls(data.payload.call);
                             endOfGame.checkForWinner(data);
                             checkForNumber(data.payload.call);
                         }).catch(function (data) {
