@@ -22,6 +22,9 @@ var mocks;
             markedNumbers: [],
             pushArray: function () {},
         },
+        ProxyConstants: {
+            baseURL: "http://eutaveg-01.tombola.emea:30069/"
+        },
         BingoCall:{
 
         },

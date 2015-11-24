@@ -31,6 +31,8 @@
             httpBackend.flush();
         });
 
+
+
         it('Ensures the makemove function is working and returns values', function () {
             var theResponse = {'outcome': 'Continue', 'gameboard': '100000000', 'winner': 0};
             httpBackend.expectPOST("http://eutaveg-01.tombola.emea:35000/api/v1.0/makemove", {"playerNumber": "1", "chosenSquare": "0"})
