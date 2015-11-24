@@ -3,11 +3,10 @@
     angular.module('Tombola.Games.Bingo90.Core')
 
         .controller('MainController',
-        ['$scope', 'AuthenticationService', 'GameApi', 'BingoTicket', 'BingoCall', function ($scope,
+        ['$scope', 'AuthenticationService', 'GameProxy', 'BingoTicket', 'BingoCall','CoreApiConverter', function ($scope,
                                                                                              authenticationService,
-                                                                                             gameApi, bingoTicket,
-                                                                                             bingoCall) {
-            $scope.gameApi = gameApi;
+                                                                                             gameProxy, bingoTicket,
+                                                                                             bingoCall, coreApiConverter) {
             $scope.bingoTicket = bingoTicket;
             $scope.bingoCall = bingoCall;
             $scope.bingoCardNumbers = bingoTicket.balls;
@@ -18,19 +17,36 @@
             };
 
             $scope.logout = function () {
-                gameApi.logout();
+                authenticationService.logout();
             };
 
             $scope.nextGame = function () {
-                gameApi.nextButton();
+                gameProxy.callApi("game/next", "GET", "")
+                    .then(function (data) {
+                        coreApiConverter.convert(data);
+                        $state.go("NextGame");
+                    }).catch(function (data) {
+                        /* Error stub */
+                        console.log(data);
+                    });
             };
 
             $scope.buyInGame = function () {
-                gameApi.buyIn();
-            };
-
-            $scope.getFirstCall = function () {
-                gameApi.getCall();
+                var buyInData = {
+                    gameId: 1,
+                    userId: coreApiConverter.loginData.userinfo.username,
+                    balance: coreApiConverter.loginData.userinfo.balance
+                };
+                gameProxy.callApi("game/buyticket", "POST", buyInData)
+                    .then(function (data) {
+                        coreApiConverter.convert(data);
+                        $state.go(TicketBought);
+                        bingoTicket.pushArray(data.payload.card);
+                        bingoCall.getCall();
+                    }).catch(function (data) {
+                        /* Error stub */
+                        console.log(data);
+                    });
             };
 
         }]);

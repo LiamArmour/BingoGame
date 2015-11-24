@@ -2,6 +2,8 @@
     'use strict';
     describe('Testing my game proxy', function () {
         var httpBackend,
+            sandbox,
+            apiSpy,
             gameProxy;
 
         beforeEach(function () {
@@ -15,6 +17,8 @@
                 httpBackend = $injector.get('$httpBackend');
                 gameProxy = $injector.get('GameProxy');
             });
+
+            apiSpy = sinon.sandbox.spy(mocks.GameProxy, 'callApi');
 
         });
 
@@ -36,6 +40,7 @@
                 result = response;
                 result.should.be.deep.equal(theResponse);
             });
+            apiSpy.should.have.been.calledOnce.calledWithExactly();
             httpBackend.flush();
         });
 
@@ -50,12 +55,8 @@
 
             httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket",  {"gameId":1,"userId":"drwho","balance":20000})
                 .respond(theResponse);
-            var buyInData = {
-                gameId: 1,
-                userId: "drwho",
-                balance: 20000
-            };
-            var returnedPromise = gameProxy.callApi("game/buyticket", "POST", buyInData);
+
+            var returnedPromise = gameProxy.callApi("game/buyticket", "POST");
             var result;
             returnedPromise.then(function (response) {
                 result = response;
@@ -65,7 +66,9 @@
         });
 
         afterEach(function () {
-            //httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingExpectation();
+            sandbox.restore();
+            apiSpy.restore();
             httpBackend.verifyNoOutstandingRequest();
         });
 
