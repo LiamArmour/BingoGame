@@ -3,10 +3,13 @@
     angular.module('Tombola.Games.Bingo90.Core')
 
         .controller('MainController',
-        ['$state','$scope', 'AuthenticationService', 'GameProxy', 'BingoTicket', 'BingoCall','CoreApiConverter', function ($state, $scope,
-                                                                                             authenticationService,
-                                                                                             gameProxy, bingoTicket,
-                                                                                             bingoCall, coreApiConverter) {
+        ['$state', '$scope', 'AuthenticationService', 'GameProxy', 'BingoTicket', 'BingoCall', 'CoreApiConverter', function ($state,
+                                                                                                                             $scope,
+                                                                                                                             authenticationService,
+                                                                                                                             gameProxy,
+                                                                                                                             bingoTicket,
+                                                                                                                             bingoCall,
+                                                                                                                             coreApiConverter) {
             $scope.bingoTicket = bingoTicket;
             $scope.bingoCall = bingoCall;
             $scope.bingoCardNumbers = bingoTicket.balls;

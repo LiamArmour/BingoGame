@@ -54,19 +54,19 @@
 
         });
 
-        it.skip('Ensures the login works and changes the state', function () {
+        it('Ensures the login works and changes the state', function () {
             $scope.username = "drwho";
             $scope.password = "tardis123!";
             $scope.login();
             loginSpy.should.have.been.calledOnce.calledWithExactly($scope.username, $scope.password);
         });
 
-        it.skip('Ensures the logout works and retuns to login', function () {
+        it('Ensures the logout works and retuns to login', function () {
             $scope.logout();
             logoutSpy.should.have.been.calledOnce.calledWithExactly();
         });
 
-        it.skip('Ensures the next game button works', function () {
+        it('Ensures the next game button works', function () {
             $scope.nextGame();
             gameProxyStub.should.have.been.calledOnce;
             convertNextGameDataSpy.should.have.been.calledOnce;
@@ -76,7 +76,7 @@
             $rootScope.$digest();
         });
 
-        it.skip('Ensures the buy in game button works', function () {
+        it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
             proxyBuyInStub = sinon.stub(mocks.GameProxy, '1, 4, updateCallback');
             gameProxyStub.should.have.been.calledOnce;
