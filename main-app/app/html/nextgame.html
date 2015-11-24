@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{model.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{loginApi.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{loginApi.playerBalance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -14,13 +14,13 @@
 
     <img src="images/bingo90.png">
 
-    <h3>Buy tickets for game {{gameModel.returnedMessage.payload.gameId}}</h3>
+    <h3>Buy tickets for game {{gameApi.returnedMessage.payload.gameId}}</h3>
     You are buying tickets for Bingo90<br>
     Click on the amount of tickets or strips you require<br>
 
     <img src="images/tickets.png" ng-click="buyInGame()"> <br>
 
-    The next game starts in: {{gameModel.returnedMessage.payload.start}}<br>
-    New Account Balance: {{model.playerBalance}}
+    The next game starts in: {{gameApi.returnedMessage.payload.start}}<br>
+    New Account Balance: {{loginApi.playerBalance}}
 
 </div>

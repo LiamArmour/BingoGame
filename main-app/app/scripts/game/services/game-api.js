@@ -1,48 +1,47 @@
 (function () {
     'use strict';
     angular.module('Tombola.Games.Bingo90.Core')
-        .service('GameApi',  ['$state', 'GameProxy','BingoTicket','BingoCall', function ($state, gameProxy, bingoTicket, bingoCall) {
+        .service('GameApi',
+        ['$state', 'GameProxy', 'BingoTicket', 'BingoCall','CoreApiConverter', function ($state, gameProxy, bingoTicket,
+                                                                                        bingoCall, coreApiConverter) {
             var me = this,
-                buyInData = {
-                    gameId: 1,
-                    userId: "drwho",
-                    balance: 100000000000
-                },
 
-            callApi = function(apiName, action, data, token){
-                    gameProxy.callApi(apiName, action, data, token)
+                checkForPurchasedTicket =  function () {
+                    if (data.message == "TicketBought") {
+                        bingoTicket.pushArray(data.payload.card);
+                        bingoCall.getCall();
+                    }
+                };
+                callApi = function (apiName, action, data) {
+                    gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
-                            me.returnedMessage = data;
+                            coreApiConverter.convert(data);
                             $state.go(data.message);
-                            console.log(data);
-                            if(data.message == "TicketBought"){
+
+                            if (data.message == "TicketBought") {
                                 bingoTicket.pushArray(data.payload.card);
-                                bingoCall.getCall(token);
+                                bingoCall.getCall();
                             }
+
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
                         });
                 };
 
-            me.nextButton = function (token) {
-                callApi("game/next", "GET", "", token);
+            me.nextButton = function () {
+                //Todo: expose getNextGame on game proxy
+                callApi("game/next", "GET", "");
             };
 
-<<<<<<< HEAD
-            me.buyIn = function (token) {
-                callApi("game/buyticket", "POST", buyInData, token);
+            me.buyIn = function () {
+                //Todo: expose butTicket on game proxy
+                var buyInData = {
+                    gameId: 1,
+                    userId: coreApiConverter.loginData.userinfo.username,
+                    balance: coreApiConverter.loginData.userinfo.balance
+                };
+                callApi("game/buyticket", "POST", buyInData);
             };
-
-<<<<<<< HEAD
-=======
-            me.getCall = function (token) {
-                callApi("game/getcall", "POST", getCallData, token);
-=======
-            me.logout = function (token) {
-                callApi("users/logout", "POST", "", token);
->>>>>>> master
-            };
->>>>>>> master
         }]);
 })();

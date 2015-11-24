@@ -5,7 +5,7 @@
             return {
                 restrict: 'A',
                 template: function(element, attributes){
-                    var html = '<div ng-click="clickBox('+attributes.ticketSquare+')">{{bingoCardNumbers['+attributes.ticketSquare+']}}</div>';
+                    var html = '<div ng-class="markedNumbers['+attributes.ticketSquare+']" ng-click="clickBox('+attributes.ticketSquare+')">{{bingoCardNumbers['+attributes.ticketSquare+']}}</div>';
                     return html;
                 }
             };

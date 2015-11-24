@@ -14,6 +14,15 @@
     border: 1px solid #000;
     text-align: center;
 }
+
+.markedCell{
+    background-image: url('../images/marked.png');
+    height: 51px;
+    width: 49px;
+    float: left;
+    border: 1px solid #000;
+    text-align: center;
+}
 .bingoBackground{
     margin: 0 auto;
     width: 570px;
@@ -28,9 +37,16 @@
     line-height: 51px;
 }
 .numbersLeft{
+    background-image: url('../images/to-go.png');
     height: 158px;
     width: 80px;
     float: right;
+    color: #ffffff;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 36px;
+    font-weight: bold;
     margin-top: 10px;
     margin-right: 10px;
 }

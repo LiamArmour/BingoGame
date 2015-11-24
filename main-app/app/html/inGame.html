@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{model.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{loginProxy.playerUsername}}</a></li>
+        <li><a ui-sref="#">Balance: {{loginProxy.playerBalance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -13,46 +13,60 @@
 <div class="gameAbout" ng-controller="MainController">
 
     <img src="images/bingo90.png">
+<br>
+    <div class="callRow">
+        <table width="460px">
+            <tr>
+                <td width="250px">
+                    <div class="lastCall">{{bingoCall.lastCallsDisplay[4]}}</div>
+                    <div class="lastCall">{{bingoCall.lastCallsDisplay[3]}}</div>
+                    <div class="lastCall">{{bingoCall.lastCallsDisplay[2]}}</div>
+                    <div class="lastCall">{{bingoCall.lastCallsDisplay[1]}}</div>
+                    <div class="lastCall">{{bingoCall.lastCallsDisplay[0]}}</div>
+                </td>
+                <td width="62px">
+                    <div class="currentCall">{{bingoCall.callMessage.payload.call}}</div>
+                </td>
+                <td width="148px">
+                    Game ID: {{gameApi.returnedMessage.payload.gameId}} Call: {{bingoCall.callMessage.payload.callnumber}}
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <h3>Game ID: {{gameModel.returnedMessage.payload.gameId}}</h3>
-
-    <br>
-    Current Number: {{bingoCall.callMessage.payload.call}} <br>
-    Call Number: {{bingoCall.callMessage.payload.callnumber}}
-
-        <div class="bingoBackground">
+    <div class="bingoBackground">
             <div class="gameboard">
-                <div ticket-square="0" class="bingoCell textCenter"></div>
-                <div ticket-square="1" class="bingoCell textCenter"></div>
-                <div ticket-square="2" class="bingoCell textCenter"></div>
-                <div ticket-square="3" class="bingoCell textCenter"></div>
-                <div ticket-square="4" class="bingoCell textCenter"></div>
-                <div ticket-square="5" class="bingoCell textCenter"></div>
-                <div ticket-square="6" class="bingoCell textCenter"></div>
-                <div ticket-square="7" class="bingoCell textCenter"></div>
-                <div ticket-square="8" class="bingoCell textCenter"></div>
+                <div ticket-square="0" class="textCenter"></div>
+                <div ticket-square="1" class="textCenter"></div>
+                <div ticket-square="2" class="textCenter"></div>
+                <div ticket-square="3" class="textCenter"></div>
+                <div ticket-square="4" class="textCenter"></div>
+                <div ticket-square="5" class="textCenter"></div>
+                <div ticket-square="6" class="textCenter"></div>
+                <div ticket-square="7" class="textCenter"></div>
+                <div ticket-square="8" class="textCenter"></div>
 
-                <div ticket-square="9" class="bingoCell textCenter"></div>
-                <div ticket-square="10" class="bingoCell textCenter"></div>
-                <div ticket-square="11" class="bingoCell textCenter"></div>
-                <div ticket-square="12" class="bingoCell textCenter"></div>
-                <div ticket-square="13" class="bingoCell textCenter"></div>
-                <div ticket-square="14" class="bingoCell textCenter"></div>
-                <div ticket-square="15" class="bingoCell textCenter"></div>
-                <div ticket-square="16" class="bingoCell textCenter"></div>
-                <div ticket-square="17" class="bingoCell textCenter"></div>
+                <div ticket-square="9" class="textCenter"></div>
+                <div ticket-square="10" class="textCenter"></div>
+                <div ticket-square="11" class="textCenter"></div>
+                <div ticket-square="12" class="textCenter"></div>
+                <div ticket-square="13" class="textCenter"></div>
+                <div ticket-square="14" class="textCenter"></div>
+                <div ticket-square="15" class="textCenter"></div>
+                <div ticket-square="16" class="textCenter"></div>
+                <div ticket-square="17" class="textCenter"></div>
 
-                <div ticket-square="18" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="19" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="20" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="21" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="22" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="23" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="24" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="25" class="bingoCell borderBottom textCenter"></div>
-                <div ticket-square="26" class="bingoCell borderBottom textCenter"></div>
+                <div ticket-square="18" class="borderBottom textCenter"></div>
+                <div ticket-square="19" class="borderBottom textCenter"></div>
+                <div ticket-square="20" class="borderBottom textCenter"></div>
+                <div ticket-square="21" class="borderBottom textCenter"></div>
+                <div ticket-square="22" class="borderBottom textCenter"></div>
+                <div ticket-square="23" class="borderBottom textCenter"></div>
+                <div ticket-square="24" class="borderBottom textCenter"></div>
+                <div ticket-square="25" class="borderBottom textCenter"></div>
+                <div ticket-square="26" class="borderBottom textCenter"></div>
             </div>
-            <div class="numbersLeft"><img src="images/togo.png"></div>
+            <div class="numbersLeft">5 <br>To Go</div>
         </div>
 
 </div>

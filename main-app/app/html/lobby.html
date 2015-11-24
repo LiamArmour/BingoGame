@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">Username: {{model.playerUsername}}</a></li>
-        <li><a ui-sref="#">Balance: {{model.playerBalance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Username: {{sessionDetailsLogin.username}}</a></li>
+        <li><a ui-sref="#">Balance: {{sessionDetailsLogin.balance | currency:"£"}} </a></li>
         <li><a ui-sref="#">Home</a></li>
         <li><a ui-sref="#">Lobby</a></li>
         <li><a ui-sref="#">My Account</a></li>
@@ -23,7 +23,4 @@
     <img src="images/rainbow.png" class="room-img" ng-click="nextGame()">
     <img src="images/spectrum.png" class="room-img" ng-click="nextGame()">
 
-    <br>
-
-    Token: {{model.playerToken}} <br> <br>
 </div>
