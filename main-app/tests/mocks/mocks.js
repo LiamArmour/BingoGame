@@ -3,12 +3,10 @@ var mocks;
     'use strict';
     mocks = {
         AuthenticationService: {
-            createLoginData: function (usernameType, passwordType) {
-            },
-            callApiLogin: function (callName, requestData) {
-            },
-            login: function (usernameType, passwordType) {
-            }
+            createLoginData: function (usernameType, passwordType) {},
+            callApiLogin: function (callName, requestData) {},
+            login: function (usernameType, passwordType) {},
+            logout: function (token) {}
         },
         GameApi: {
             nextButton: function (token) {
@@ -16,8 +14,6 @@ var mocks;
             buyIn: function (token) {
             },
             getCall: function (token) {
-            },
-            logout: function (token) {
             }
         },
         $state: {

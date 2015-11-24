@@ -23,7 +23,7 @@
             $scope.nextGame = function () {
                 gameProxy.callApi("game/next", "GET", "")
                     .then(function (data) {
-                        coreApiConverter.convert(data);
+                        coreApiConverter.convertNextGameData(data);
                         $state.go("NextGame");
                     }).catch(function (data) {
                         /* Error stub */
@@ -39,8 +39,8 @@
                 };
                 gameProxy.callApi("game/buyticket", "POST", buyInData)
                     .then(function (data) {
-                        coreApiConverter.convert(data);
-                        $state.go(TicketBought);
+                        coreApiConverter.convertTicketPurchaseData(data);
+                        $state.go("TicketBought");
                         bingoTicket.pushArray(data.payload.card);
                         bingoCall.getCall();
                     }).catch(function (data) {

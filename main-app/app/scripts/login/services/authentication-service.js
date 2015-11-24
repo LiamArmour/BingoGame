@@ -14,7 +14,7 @@
                     authenticationProxy.apiCallLogin(callName, requestData)
                         .then(function (data) {
                             //TODO: convert into friendly object in auth proxy.
-                            coreApiConverter.convert(data);
+                            coreApiConverter.convertLoginData(data);
                             me.currentToken = data.payload.user.token;
 
                             $state.go('lobby');

@@ -42,7 +42,7 @@
 
             sandbox = sinon.sandbox.create();
             loginSpy = sinon.sandbox.spy(mocks.AuthenticationService, 'login');
-            logoutSpy = sinon.sandbox.spy(mocks.GameApi, 'logout');
+            logoutSpy = sinon.sandbox.spy(mocks.AuthenticationService, 'logout');
             nextGameSpy = sinon.sandbox.spy(mocks.GameApi, 'nextButton');
             buyInGameSpy = sinon.sandbox.spy(mocks.GameApi, 'buyIn');
             getCallSpy = sinon.sandbox.spy(mocks.GameApi, 'getCall');

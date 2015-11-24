@@ -4,16 +4,6 @@
         .service('CoreApiConverter', [
             function () {
                 var me = this;
-                me.convert = function (response) {
-                    if (response.message === "LoginSuccess") {
-                        me.convertLoginData(response);
-                    } else if (response.message === "NextGame") {
-                        me.convertNextGameData(response);
-                    } else if (response.message === "TicketBought") {
-                        me.convertTicketPurchaseData(response);
-                    }
-                };
-
                 me.convertLoginData = function (response) {
                     var userData = {
                         token: response.payload.user.token,
