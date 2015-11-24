@@ -11,18 +11,13 @@
                         bingoTicket.pushArray(data.payload.card);
                         bingoCall.getCall();
                     }
-                };
+                },
                 callApi = function (apiName, action, data) {
                     gameProxy.callApi(apiName, action, data)
                         .then(function (data) {
                             coreApiConverter.convert(data);
                             $state.go(data.message);
-
-                            if (data.message == "TicketBought") {
-                                bingoTicket.pushArray(data.payload.card);
-                                bingoCall.getCall();
-                            }
-
+                            checkForPurchasedTicket(data);
                         }).catch(function (data) {
                             /* Error stub */
                             console.log(data);
