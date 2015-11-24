@@ -41,8 +41,11 @@
 
         it('Ensures the buy in is working and returns values', function () {
             var theResponse = {
-                "message": "NextGame",
-                "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
+                "message": "TicketBought",
+                "payload": {gameId: 1, card: "054963758028345266770611596982"},
+                    "card": "054963758028345266770611596982",
+                    "gameId": 1,
+                    "user": {"username": "drwho", "balance": 19990, "token": "f36bb73b-83cc-4539-aac0-893914bc73ec"}
             };
 
             httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket",  {"gameId":1,"userId":"drwho","balance":20000})

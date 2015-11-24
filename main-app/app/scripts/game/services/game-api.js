@@ -6,7 +6,7 @@
                                                                                         bingoCall, coreApiConverter) {
             var me = this,
 
-                checkForPurchasedTicket =  function () {
+                checkForPurchasedTicket =  function (data) {
                     if (data.message == "TicketBought") {
                         bingoTicket.pushArray(data.payload.card);
                         bingoCall.getCall();
