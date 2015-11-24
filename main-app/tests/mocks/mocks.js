@@ -24,8 +24,7 @@ var mocks;
         BingoTicket: {
             balls: [],
             markedNumbers: [],
-            pushArray: function () {
-            },
+            pushArray: function () {}
         },
         ProxyConstants: {
             baseURL: "http://eutaveg-01.tombola.emea:30069/"
