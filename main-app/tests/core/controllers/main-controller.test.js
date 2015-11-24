@@ -4,6 +4,7 @@
     describe('Testing the main controller', function () {
         var $q,
             $scope,
+            coreApiConverter,
             $controller,
             controller,
             deferred,
@@ -29,11 +30,12 @@
             });
 
 
-            inject(function (_$q_, _$rootScope_, _$controller_) {
+            inject(function (_$q_, _$rootScope_, _$controller_, CoreApiConverter) {
                 $q = _$q_;
                 $rootScope = _$rootScope_;
                 $scope = $rootScope.$new();
                 $controller = _$controller_;
+                coreApiConverter = CoreApiConverter;
                 $scope.username = 'username';
                 $scope.password = 'password';
                 controller = $controller('MainController', {
@@ -44,7 +46,6 @@
             sandbox = sinon.sandbox.create();
             loginSpy = sandbox.spy(mocks.AuthenticationService, 'login');
             logoutSpy = sandbox.spy(mocks.AuthenticationService, 'logout');
-            convertNextGameDataSpy = sandbox.spy(mocks.CoreApiConverter, 'convertNextGameData');
             goSpy = sandbox.spy(mocks.$state, 'go');
 
             deferred = $q.defer();
@@ -67,9 +68,18 @@
         });
 
         it('Ensures the next game button works', function () {
+            var returnedData = {
+                "message": "NextGame",
+                "payload": {
+                    "gameId": 1,
+                    "start": "2015-07-24T13:02:03.496Z",
+                    "ticketPrice": 10
+                }
+            };
             $scope.nextGame();
             gameProxyStub.should.have.been.calledOnce;
-            convertNextGameDataSpy.should.have.been.calledOnce;
+            //coreApiConverter.convertNextGameData(returnedData);
+            console.log('im here');
             goSpy.should.have.been.calledOnce.calledWithExactly('NextGame');
 
             deferred.resolve({message: "NextGame", payload: {gameId: 1, ticketPrice: 10, start: "2015-11-24T10:05:19.123Z"}});
@@ -78,7 +88,6 @@
 
         it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
-            proxyBuyInStub = sinon.stub(mocks.GameProxy, '1, 4, updateCallback');
             gameProxyStub.should.have.been.calledOnce;
         });
 
