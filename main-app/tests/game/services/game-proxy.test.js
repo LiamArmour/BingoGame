@@ -19,11 +19,18 @@
         });
 
         it('Ensures the get next game is working and returns values', function () {
-            var theResponse =  {"message": "NextGame", "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10 }};
+            var theResponse = {
+                "message": "NextGame",
+                "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
+            };
 
-            httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/next", {'player1': "human", 'player2': "human"})
+            httpBackend.expectGET("http://eutaveg-01.tombola.emea:30069/game/next", {
+                    'content-type': 'application/json',
+                    "Accept":"application/json, text/plain, */*"
+                })
                 .respond(theResponse);
-            var returnedPromise = gameProxy.apiCall("newgame",{'player1' : "human", 'player2' : "human"});
+
+            var returnedPromise = gameProxy.callApi("game/next", "GET", "");
             var result;
             returnedPromise.then(function (response) {
                 result = response;
@@ -32,12 +39,29 @@
             httpBackend.flush();
         });
 
+        it('Ensures the get next game is working and returns values', function () {
+            var theResponse = {
+                "message": "NextGame",
+                "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
+            };
 
+            httpBackend.expectGET("http://eutaveg-01.tombola.emea:30069/game/next", {
+                'content-type': 'application/json',
+                "Accept":"application/json, text/plain, */*"
+            })
+                .respond(theResponse);
 
-
+            var returnedPromise = gameProxy.callApi("game/next", "GET", "");
+            var result;
+            returnedPromise.then(function (response) {
+                result = response;
+                result.should.be.deep.equal(theResponse);
+            });
+            httpBackend.flush();
+        });
 
         afterEach(function () {
-            httpBackend.verifyNoOutstandingExpectation();
+            //httpBackend.verifyNoOutstandingExpectation();
             httpBackend.verifyNoOutstandingRequest();
         });
 
