@@ -22,7 +22,7 @@
 
         });
 
-        it('Ensures the get next game is working and returns values', function () {
+        it.skip('Ensures the get next game is working and returns values', function () {
             var theResponse = {
                 "message": "NextGame",
                 "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
@@ -44,7 +44,7 @@
             httpBackend.flush();
         });
 
-        it('Ensures the buy in is working and returns values', function () {
+        it.skip('Ensures the buy in is working and returns values', function () {
             var theResponse = {
                 "message": "TicketBought",
                 "payload": {gameId: 1, card: "054963758028345266770611596982"},

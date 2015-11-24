@@ -30,13 +30,27 @@ var mocks;
         ProxyConstants: {
             baseURL: "http://eutaveg-01.tombola.emea:30069/"
         },
-        BingoCall: {},
-        SessionDetails: {},
-        BingoCardNumbers: {},
-        GameProxy : {
-        callApi: function () {
+        BingoCall: {
+
+        },
+        SessionDetails: {
+
+        },
+        BingoCardNumbers: {
+
+        },
+
+        GameProxy: {
+            callApi: function () {
+            },
+
+        CoreApiConverter: {
+            convertLoginData: function (response) {},
+            convertNextGameData: function (response) {},
+            convertTicketPurchaseData: function (response) {}
+
         }
-    }
+        }
     };
 })();
 
