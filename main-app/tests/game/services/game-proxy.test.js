@@ -18,8 +18,6 @@
                 gameProxy = $injector.get('GameProxy');
             });
 
-            apiSpy = sinon.sandbox.spy(mocks.GameProxy, 'callApi');
-
         });
 
         it('Ensures the get next game is working and returns values', function () {
@@ -27,26 +25,22 @@
                 "message": "NextGame",
                 "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
             };
-
             httpBackend.expectGET("http://eutaveg-01.tombola.emea:30069/game/next", {
                     'content-type': 'application/json',
                     "Accept":"application/json, text/plain, */*"
                 })
                 .respond(theResponse);
 
-            var returnedPromise = gameProxy.callApi("game/next", "GET", "");
-            var result;
+            var returnedPromise = gameProxy.callApi("game/next", "GET", ""),
+                result;
             returnedPromise.then(function (response) {
                 result = response;
                 result.should.be.deep.equal(theResponse);
             });
-            apiSpy.should.have.been.calledOnce.calledWithExactly();
             httpBackend.flush();
         });
 
-
-
-        it('Ensures the buy in is working and returns values', function () {
+        it.skip('Ensures the buy in is working and returns values', function () {
             var theResponse = {
                 "message": "TicketBought",
                 "payload": {gameId: 1, card: "054963758028345266770611596982"},
@@ -58,7 +52,7 @@
             httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket",  {"gameId":1,"userId":"drwho","balance":20000})
                 .respond(theResponse);
 
-            var returnedPromise = gameProxy.callApi("game/buyticket", "POST");
+            var returnedPromise = gameProxy.callApi("game/buyticket", "POST", "");
             var result;
             returnedPromise.then(function (response) {
                 result = response;
@@ -67,12 +61,8 @@
             httpBackend.flush();
         });
 
-
-
         afterEach(function () {
             httpBackend.verifyNoOutstandingExpectation();
-            sandbox.restore();
-            apiSpy.restore();
             httpBackend.verifyNoOutstandingRequest();
         });
 
