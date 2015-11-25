@@ -4,7 +4,8 @@
         var sandbox,
             converter,
             loginConvertSpy,
-            nextGameConvertSpy;
+            nextGameConvertSpy,
+            buyInConvertSpy;
 
         beforeEach(function () {
             module('Tombola.Games.Bingo90.Core');
@@ -15,6 +16,7 @@
             sandbox = sinon.sandbox.create();
             loginConvertSpy = sandbox.spy(converter, 'convertLoginData');
             nextGameConvertSpy = sandbox.spy(converter, 'convertNextGameData');
+            buyInConvertSpy = sandbox.spy(converter, 'convertTicketPurchaseData');
         });
 
         it('Ensure the login response can be converted', function () {
@@ -43,6 +45,18 @@
             };
             var nextGameConvert = converter.convertNextGameData(nextGameResponse);
             nextGameConvertSpy.should.have.been.calledOnce.calledWithExactly(nextGameResponse);
+        });
+
+        it('Ensure the buy in data can be converted', function () {
+            var purchaseResponse =  {
+                message: "TicketBought",
+                payload: {
+                    gameId: 1,
+                    card: "054963758028345266770611596982"
+                }
+            };
+            var nextGameConvert = converter.convertTicketPurchaseData(purchaseResponse);
+            buyInConvertSpy.should.have.been.calledOnce.calledWithExactly(purchaseResponse);
         });
 
         afterEach(function () {

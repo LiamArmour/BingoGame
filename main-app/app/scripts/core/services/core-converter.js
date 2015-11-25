@@ -30,10 +30,7 @@
                     var ticketPurchaseData = {
                         gameid: response.payload.gameId,
                         ticketinfo: {
-                            ticket: response.payload.card,
-                            updateduser: {
-                                balance: response.payload.user.balance
-                            }
+                            ticket: response.payload.card
                         }
                     };
                     me.ticketData = ticketPurchaseData;
