@@ -67,6 +67,7 @@
             logoutSpy.should.have.been.calledOnce.calledWithExactly();
         });
 
+        
         it('Ensures the next game button works', function () {
             var returnedData = {
                 "message": "NextGame",
