@@ -11,7 +11,6 @@
             $rootScope,
             loginSpy,
             logoutSpy,
-            gameProxyStub,
             newGameStub,
             buyInGameStub,
             goSpy,
@@ -27,6 +26,7 @@
                 $provide.value('BingoTicket', {});
                 $provide.value('BingoCall', {});
                 $provide.value('CoreApiConverter', mocks.CoreApiConverter);
+                $provide.value('GameService', mocks.GameService);
             });
 
 
@@ -68,10 +68,17 @@
 
         it('Ensures the next game button works', function () {
             $scope.nextGame();
-            gameProxyStub.should.have.been.calledOnce;
+            newGameStub.should.have.been.calledOnce;
         });
 
         it('Ensures the buy in game button works', function () {
+            mocks.CoreApiConverter.loginData = {
+                "token": "token",
+                "userinfo": {
+                    "username": "drwho",
+                    "balance": 200000
+                }
+            };
             $scope.buyInGame();
             buyInGameStub.should.have.been.calledOnce;
         });

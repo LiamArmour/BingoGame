@@ -42,20 +42,21 @@ var mocks;
         GameService: {
             nextGame: function (endPoint, type, data) {},
             buyInGame: function (endPoint, type, data) {}
-
         },
 
         GameProxy: {
             callApi: function () {
-            },
+            }
+        },
 
         CoreApiConverter: {
             convertLoginData: function (response) {},
+            loginData: {},
             convertNextGameData: function (response) {},
             convertTicketPurchaseData: function (response) {}
 
         }
-        }
+
     };
 })();
 
