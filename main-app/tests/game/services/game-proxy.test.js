@@ -7,7 +7,7 @@
             gameProxy;
 
         beforeEach(function () {
-            module('Tombola.Games.Bingo90.Core');
+            module('Tombola.Games.Bingo90.Game');
             module(function ($provide) {
                 $provide.value('ProxyConstants', mocks.ProxyConstants);
                 $provide.value('AuthenticationService', mocks.AuthenticationService);

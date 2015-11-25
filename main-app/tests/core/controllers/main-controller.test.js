@@ -12,8 +12,8 @@
             loginSpy,
             logoutSpy,
             gameProxyStub,
-            proxyBuyInStub,
-            convertNextGameDataSpy,
+            newGameStub,
+            buyInGameStub,
             goSpy,
 
             sandbox;
@@ -49,47 +49,31 @@
             goSpy = sandbox.spy(mocks.$state, 'go');
 
             deferred = $q.defer();
-            gameProxyStub = sandbox.stub(mocks.GameProxy, 'callApi', function(){
-                return deferred.promise;
-            });
-
+            newGameStub = sandbox.stub(mocks.GameService, 'nextGame');
+            buyInGameStub = sandbox.stub(mocks.GameService, 'buyInGame');
         });
 
-        it.skip('Ensures the login works and changes the state', function () {
+        it('Ensures the login works and changes the state', function () {
             $scope.username = "drwho";
             $scope.password = "tardis123!";
             $scope.login();
             loginSpy.should.have.been.calledOnce.calledWithExactly($scope.username, $scope.password);
         });
 
-        it.skip('Ensures the logout works and retuns to login', function () {
+        it('Ensures the logout works and retuns to login', function () {
             $scope.logout();
             logoutSpy.should.have.been.calledOnce.calledWithExactly();
         });
 
 
-        it.skip('Ensures the next game button works', function () {
-            var returnedData = {
-                "message": "NextGame",
-                "payload": {
-                    "gameId": 1,
-                    "start": "2015-07-24T13:02:03.496Z",
-                    "ticketPrice": 10
-                }
-            };
+        it('Ensures the next game button works', function () {
             $scope.nextGame();
             gameProxyStub.should.have.been.calledOnce;
-            //coreApiConverter.convertNextGameData(returnedData);
-            console.log('im here');
-            goSpy.should.have.been.calledOnce.calledWithExactly('NextGame');
-
-            deferred.resolve({message: "NextGame", payload: {gameId: 1, ticketPrice: 10, start: "2015-11-24T10:05:19.123Z"}});
-            $rootScope.$digest();
         });
 
-        it.skip('Ensures the buy in game button works', function () {
+        it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
-            gameProxyStub.should.have.been.calledOnce;
+            buyInGameStub.should.have.been.calledOnce;
         });
 
         afterEach(function () {
