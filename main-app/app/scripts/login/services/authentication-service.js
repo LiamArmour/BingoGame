@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core')
+    angular.module('Tombola.Games.Bingo90.Login')
         .service('AuthenticationService', ['$state','AuthenticationProxy', 'CoreApiConverter', function ($state, authenticationProxy, coreApiConverter) {
             var me = this,
                 createLoginData = function(usernameType, passwordType){
