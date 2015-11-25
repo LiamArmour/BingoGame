@@ -55,20 +55,20 @@
 
         });
 
-        it('Ensures the login works and changes the state', function () {
+        it.skip('Ensures the login works and changes the state', function () {
             $scope.username = "drwho";
             $scope.password = "tardis123!";
             $scope.login();
             loginSpy.should.have.been.calledOnce.calledWithExactly($scope.username, $scope.password);
         });
 
-        it('Ensures the logout works and retuns to login', function () {
+        it.skip('Ensures the logout works and retuns to login', function () {
             $scope.logout();
             logoutSpy.should.have.been.calledOnce.calledWithExactly();
         });
 
-        
-        it('Ensures the next game button works', function () {
+
+        it.skip('Ensures the next game button works', function () {
             var returnedData = {
                 "message": "NextGame",
                 "payload": {
@@ -87,7 +87,7 @@
             $rootScope.$digest();
         });
 
-        it('Ensures the buy in game button works', function () {
+        it.skip('Ensures the buy in game button works', function () {
             $scope.buyInGame();
             gameProxyStub.should.have.been.calledOnce;
         });
