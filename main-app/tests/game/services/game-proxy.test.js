@@ -2,7 +2,8 @@
     'use strict';
     describe('Testing my game proxy', function () {
         var httpBackend,
-            gameProxy;
+            gameProxy,
+            authenticationService;
 
         beforeEach(function () {
             module('Tombola.Games.Bingo90.Game');
@@ -14,6 +15,7 @@
             inject(function ($injector) {
                 httpBackend = $injector.get('$httpBackend');
                 gameProxy = $injector.get('GameProxy');
+                authenticationService = $injector.get('AuthenticationService');
             });
 
         });

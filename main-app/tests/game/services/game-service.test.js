@@ -18,7 +18,6 @@
 
             inject(function ($injector) {
                 httpBackend = $injector.get('$httpBackend');
-                $state = $injector.get('$state');
                 gameProxy = $injector.get('GameProxy');
                 bingoTicket = $injector.get('BingoTicket');
                 bingoCall = $injector.get('BingoCall');
