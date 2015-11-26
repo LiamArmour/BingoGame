@@ -2,8 +2,6 @@
     'use strict';
     describe('Testing my game proxy', function () {
         var httpBackend,
-            sandbox,
-            apiSpy,
             gameProxy;
 
         beforeEach(function () {
@@ -30,7 +28,6 @@
                     "Accept":"application/json, text/plain, */*"
                 })
                 .respond(theResponse);
-
             var returnedPromise = gameProxy.callApi("game/next", "GET", ""),
                 result;
             returnedPromise.then(function (response) {
