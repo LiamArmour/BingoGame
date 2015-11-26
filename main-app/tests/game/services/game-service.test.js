@@ -28,7 +28,7 @@
 
         });
 
-        it.skip('Ensures the next game button works', function () {
+        it('Ensures the next game button works', function () {
             var returnedData = {
                 "message": "NextGame",
                 "payload": {
@@ -47,7 +47,7 @@
             $rootScope.$digest();
         });
 
-        it.skip('Ensures the buy in game button works', function () {
+        it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
             gameProxyStub.should.have.been.calledOnce;
         });
