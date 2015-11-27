@@ -17,7 +17,6 @@
                 gameProxy = $injector.get('GameProxy');
                 authenticationService = $injector.get('AuthenticationService');
             });
-
         });
 
         it('Ensures the get next game is working and returns values', function () {
@@ -62,6 +61,5 @@
             httpBackend.verifyNoOutstandingExpectation();
             httpBackend.verifyNoOutstandingRequest();
         });
-
     });
 }());
