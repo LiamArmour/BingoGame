@@ -3,9 +3,7 @@
     describe('Testing my game service', function () {
         var httpBackend,
             sandbox,
-            $state,
             bingoTicket,
-            gameService,
             bingoCall,
             coreApiConverter,
             gameProxy;
@@ -36,7 +34,6 @@
                 }
             };
             $scope.nextGame();
-            gameProxyStub.should.have.been.calledOnce;
             //coreApiConverter.convertNextGameData(returnedData);
             console.log('im here');
             goSpy.should.have.been.calledOnce.calledWithExactly('NextGame');
@@ -47,7 +44,6 @@
 
         it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
-            gameProxyStub.should.have.been.calledOnce;
         });
 
         afterEach(function () {
