@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    describe('Testing my game proxy', function () {
+    describe('Testing my game service', function () {
         var httpBackend,
             sandbox,
             $state,
