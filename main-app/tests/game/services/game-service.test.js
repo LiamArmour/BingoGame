@@ -2,7 +2,11 @@
     'use strict';
     describe('Testing my game service', function () {
         var sandbox,
-            gameService;
+            gameService,
+            $stateSpy,
+            gameProxySpy,
+            $rootScope,
+            nextGameData = {"message": "NextGame", "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}};
 
         beforeEach(function () {
             module('Tombola.Games.Bingo90.Game');
@@ -12,6 +16,10 @@
                 $provide.value('$state', mocks.$state);
             });
 
+            sandbox = sinon.sandbox.create();
+            gameProxySpy = sinon.sandbox.spy(mocks.GameProxy, 'callApi');
+            $stateSpy = sinon.sandbox.spy(mocks.$state, 'go');
+
             inject(function (_$rootScope_, $injector) {
                 $rootScope = _$rootScope_;
                 gameService = $injector.get('GameService');
@@ -20,20 +28,9 @@
         });
 
         it('Ensures the next game button works', function () {
-            var returnedData = {
-                "message": "NextGame",
-                "payload": {
-                    "gameId": 1,
-                    "start": "2015-07-24T13:02:03.496Z",
-                    "ticketPrice": 10
-                }
-            };
             $scope.nextGame();
-            //coreApiConverter.convertNextGameData(returnedData);
-            console.log('im here');
-            goSpy.should.have.been.calledOnce.calledWithExactly('NextGame');
 
-            deferred.resolve({message: "NextGame", payload: {gameId: 1, ticketPrice: 10, start: "2015-11-24T10:05:19.123Z"}});
+            $stateSpy.should.have.been.calledOnce.calledWithExactly('NextGame');
             $rootScope.$digest();
         });
 
