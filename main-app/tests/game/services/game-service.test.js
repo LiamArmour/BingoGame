@@ -24,7 +24,7 @@
 
         });
 
-        it('Ensures the next game button works', function () {
+        it.skip('Ensures the next game button works', function () {
             var returnedData = {
                 "message": "NextGame",
                 "payload": {
@@ -42,7 +42,7 @@
             $rootScope.$digest();
         });
 
-        it('Ensures the buy in game button works', function () {
+        it.skip('Ensures the buy in game button works', function () {
             $scope.buyInGame();
         });
 

@@ -29,16 +29,13 @@
                 }
             };
             httpBackend.expectGET("http://eutaveg-01.tombola.emea:30069/game/next", {
-                method: action,
-                url: "http://eutaveg-01.tombola.emea:30069/game/next",
-                data: "",
-                headers: {
-                    'x-token': authenticationService.getToken,
+               headers: {
+                    'x-token': "f36bb73b-83cc-4539-aac0-893914bc73ec",
                     'content-type': 'application/json'
                 }
             })
                 .respond(theResponse);
-            var returnedPromise = gameProxy.callApi("game/next", "GET", "");
+            var returnedPromise = gameProxy.callApi(theResponse);
             var result;
             returnedPromise.then(function (response) {
                 result = response;
@@ -71,5 +68,7 @@
             httpBackend.verifyNoOutstandingExpectation();
             httpBackend.verifyNoOutstandingRequest();
         });
+
     });
+
 }());
