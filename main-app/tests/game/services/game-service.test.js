@@ -41,7 +41,7 @@
         //});
         //httpBackend.flush();
 
-        it.skip('Ensures the next game button works', function () {
+        it('Ensures the next game button works', function () {
             gameService.nextGame("game/buyticket", "POST", buyInData);
             console.log('Hello?');
 
@@ -62,7 +62,6 @@
         });
 
         afterEach(function () {
-            sinon.stub.reset();
             sandbox.restore();
         });
 

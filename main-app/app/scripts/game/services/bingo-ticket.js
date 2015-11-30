@@ -28,6 +28,7 @@
                     for (ticket in tickets) {
                         splitUpTheTicket(tickets[ticket]);
                     }
+                    console.log(tickets);
                 },
 
                 eightOrLess = function(number) {
