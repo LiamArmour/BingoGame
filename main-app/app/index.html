@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{gameTitle}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="thirdparty/angular/angular.js"></script>
     <script src="thirdparty/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -12,10 +13,64 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="style/bingo-ticket.css">
 
+
+    <!--jQuery-->
+    <link rel="stylesheet" href="thirdparty/jQuery/demos/css/themes/default/jquery.mobile-1.4.5.min.css" />
+    <script src="thirdparty/jQuery/demos/js/jquery.js"></script>
+    <script src="thirdparty/jQuery/demos/js/jquery.mobile-1.4.5.min.js"></script>
+
 </head>
 
 <body>
+<div data-role="page" id="Home">
 
+    <!-- header -->
+    <div data-role="header" data-position="fixed">
+        <h1>About Us</h1>
+        <a href="#Home" class="ui-btn-right" data-role="button" data-icon="back">Back</a>
+    </div>
+    <!-- /header -->
+
+    <!-- content -->
+    <div data-role="content">
+        <p align="center">Sun and Sand Flip Flop Company is based in two locations, Sunderland been the head office and the London been a second store. both stores sell the same products, all products can be previewed online.</p>
+        <p align="center">Below you can view further information about each one of our shops.</p>
+
+        <!-- top grid -->
+        <div class="ui-grid-a">
+
+            <div class="ui-block-a">
+                <a href="#Sunderland" data-role="button" class="MainMenu" data-transition="slide">
+                    <img src="Images/Sunderland.jpg" width="80" height="70">
+                    <h5>Sunderland<br>Shop</h5></a>
+            </div>
+
+            <div class="ui-block-b">
+                <a href="#London" data-role="button" class="MainMenu" data-transition="slide">
+                    <img src="Images/London.png" width="80" height="70"><h5>London<br>Shop</h5></a>
+            </div>
+
+        </div>
+        <!-- end top grid -->
+
+    </div>
+    <!-- /content -->
+
+    <!-- footer -->
+    <div style="padding-bottom:30px"></div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Home" data-icon="home" data-transition="slide">Home</a></li>
+                <li><a href="#About" data-icon="info" data-transition="slide">About us</a></li>
+                <li><a href="#Products" data-icon="star" data-transition="slide">Products</a></li>
+                <li><a href="#Feedback" data-icon="edit" data-transition="slide">Feedback</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div> <!--footer -->
+
+    <!-- /footer -->
+</div>
 
 <div ui-view>
 
