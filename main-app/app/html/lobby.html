@@ -1,7 +1,10 @@
 <nav>
     <ul>
-        <li><a ui-sref="#">{{sessionDetailsLogin.username}}</a></li>
+        <li><a ui-sref="#">Username: {{sessionDetailsLogin.username}}</a></li>
         <li><a ui-sref="#">Balance: {{sessionDetailsLogin.balance | currency:"£"}} </a></li>
+        <li><a ui-sref="#">Home</a></li>
+        <li><a ui-sref="#">Lobby</a></li>
+        <li><a ui-sref="#">My Account</a></li>
         <li><a ng-click="logout()">Logout</a></li>
     </ul>
 </nav>
