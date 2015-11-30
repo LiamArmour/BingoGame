@@ -1,30 +1,25 @@
 (function () {
     'use strict';
     describe('Testing my game service', function () {
-        var httpBackend,
-            sandbox,
-            bingoTicket,
-            bingoCall,
-            coreApiConverter,
-            gameProxy;
+        var sandbox,
+            gameService;
 
         beforeEach(function () {
             module('Tombola.Games.Bingo90.Game');
             module(function ($provide) {
                 $provide.value('ProxyConstants', mocks.ProxyConstants);
+                $provide.value('GameProxy', mocks.GameProxy);
+                $provide.value('$state', mocks.$state);
             });
 
-            inject(function ($injector) {
-                httpBackend = $injector.get('$httpBackend');
-                gameProxy = $injector.get('GameProxy');
-                bingoTicket = $injector.get('BingoTicket');
-                bingoCall = $injector.get('BingoCall');
-                coreApiConverter = $injector.get('CoreApiConverter');
+            inject(function (_$rootScope_, $injector) {
+                $rootScope = _$rootScope_;
+                gameService = $injector.get('GameService');
             });
 
         });
 
-        it.skip('Ensures the next game button works', function () {
+        it('Ensures the next game button works', function () {
             var returnedData = {
                 "message": "NextGame",
                 "payload": {
@@ -42,7 +37,7 @@
             $rootScope.$digest();
         });
 
-        it.skip('Ensures the buy in game button works', function () {
+        it('Ensures the buy in game button works', function () {
             $scope.buyInGame();
         });
 
