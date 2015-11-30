@@ -28,14 +28,13 @@
                     "ticketPrice": 10
                 }
             };
+
             httpBackend.expectGET("http://eutaveg-01.tombola.emea:30069/game/next", {
-               headers: {
-                    'x-token': "f36bb73b-83cc-4539-aac0-893914bc73ec",
-                    'content-type': 'application/json'
-                }
+                "content-type":"application/json",
+                "Accept":"application/json, text/plain, */*"
             })
                 .respond(theResponse);
-            var returnedPromise = gameProxy.callApi(theResponse);
+            var returnedPromise = gameProxy.callApi("game/next", "GET", "");
             var result;
             returnedPromise.then(function (response) {
                 result = response;
@@ -44,25 +43,32 @@
             httpBackend.flush();
         });
 
-        //it('Ensures the buy in is working and returns values', function () {
-        //    var theResponse = {
-        //        "message": "TicketBought",
-        //        "payload": {gameId: 1, card: "054963758028345266770611596982"},
-        //            "card": "054963758028345266770611596982",
-        //            "gameId": 1,
-        //                "user": {"username": "drwho", "balance": 19990, "token": "f36bb73b-83cc-4539-aac0-893914bc73ec"}
-        //    };
-        //    httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket",
-        //        {"gameId": 1, "userId": "drwho", "balance": 20000})
-        //        .respond(theResponse);
-        //    var returnedPromise = gameProxy.callApi("game/buyticket", "POST", "");
-        //    var result;
-        //    returnedPromise.then(function (response) {
-        //        result = response;
-        //        result.should.be.deep.equal(theResponse);
-        //    });
-        //    httpBackend.flush();
-        //});
+        it('Ensures the buy in is working and returns value', function () {
+            var theResponse = {
+                "message": "TicketBought",
+                "payload": {
+                    gameId: 1,
+                    card: "054963758028345266770611596982"
+                },
+                "card": "054963758028345266770611596982",
+                    "gameId": 1,
+                    "user": {
+                        "username": "drwho",
+                        "balance": 19990,
+                        "token": "f36bb73b-83cc-4539-aac0-893914bc73ec"
+                }
+            };
+
+            httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket", "")
+                .respond(theResponse);
+            var returnedPromise = gameProxy.callApi("game/buyticket", "POST", "");
+            var result;
+            returnedPromise.then(function (response) {
+                result = response;
+                result.should.be.deep.equal(theResponse);
+            });
+            httpBackend.flush();
+        });
 
         afterEach(function () {
             httpBackend.verifyNoOutstandingExpectation();
