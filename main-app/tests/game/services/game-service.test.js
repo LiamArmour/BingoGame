@@ -6,7 +6,10 @@
             $stateSpy,
             gameProxySpy,
             $rootScope,
-            nextGameData = {"message": "NextGame", "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}},
+            nextGameData = {
+                "message": "NextGame",
+                "payload": {"gameId": 1, "start": "2015-07-24T13:02:03.496Z", "ticketPrice": 10}
+            },
             buyInData = {gameId: 1, userId: "drwho", balance: 200000};
 
         beforeEach(function () {
@@ -32,7 +35,7 @@
         });
 
         //httpBackend.expectPOST("http://eutaveg-01.tombola.emea:30069/game/buyticket", "")
-        //    .respond(theResponse);
+        //    .respond(theResponse);termin
         //var returnedPromise = gameProxy.callApi("game/buyticket", "POST", "");
         //var result;
         //returnedPromise.then(function (response) {
