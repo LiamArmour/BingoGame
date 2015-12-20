@@ -41,7 +41,7 @@
         //});
         //httpBackend.flush();
 
-        it('Ensures the next game button works', function () {
+        it.skip('Ensures the next game button works', function () {
             gameService.nextGame("game/buyticket", "POST", buyInData);
             console.log('Hello?');
             gameProxySpy.should.have.been.calledOnce.calledWithExactly({
