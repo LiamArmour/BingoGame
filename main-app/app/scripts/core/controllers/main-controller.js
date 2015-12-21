@@ -3,11 +3,13 @@
     angular.module('Tombola.Games.Bingo90.Core')
 
         .controller('MainController',
-        ['$scope', 'AuthenticationService', 'GameApi', 'BingoTicket', 'BingoCall', function ($scope,
-                                                                                             authenticationService,
-                                                                                             gameApi, bingoTicket,
-                                                                                             bingoCall) {
-            $scope.gameApi = gameApi;
+        ['$state', '$scope', 'AuthenticationService', 'GameProxy', 'BingoTicket', 'BingoCall', 'CoreApiConverter','GameService', function ($state,
+                                                                                                                             $scope,
+                                                                                                                             authenticationService,
+                                                                                                                             gameProxy,
+                                                                                                                             bingoTicket,
+                                                                                                                             bingoCall,
+                                                                                                                             coreApiConverter, gameService) {
             $scope.bingoTicket = bingoTicket;
             $scope.bingoCall = bingoCall;
             $scope.bingoCardNumbers = bingoTicket.balls;
@@ -18,19 +20,20 @@
             };
 
             $scope.logout = function () {
-                gameApi.logout();
+                authenticationService.logout();
             };
 
             $scope.nextGame = function () {
-                gameApi.nextButton();
+                gameService.nextGame("game/next", "GET", "");
             };
 
             $scope.buyInGame = function () {
-                gameApi.buyIn();
-            };
-
-            $scope.getFirstCall = function () {
-                gameApi.getCall();
+                var buyInData = {
+                    gameId: 1,
+                    userId: coreApiConverter.loginData.userinfo.username,
+                    balance: coreApiConverter.loginData.userinfo.balance
+                };
+                gameService.buyInGame("game/buyticket", "POST", buyInData);
             };
 
         }]);

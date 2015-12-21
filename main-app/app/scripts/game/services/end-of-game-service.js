@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core')
+    angular.module('Tombola.Games.Bingo90.Game')
         .service('EndOfGame', ['$interval', '$state', function($interval, $state) {
             var me = this;
 

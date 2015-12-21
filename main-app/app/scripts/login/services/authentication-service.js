@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core')
+    angular.module('Tombola.Games.Bingo90.Login')
         .service('AuthenticationService', ['$state','AuthenticationProxy', 'CoreApiConverter', function ($state, authenticationProxy, coreApiConverter) {
             var me = this,
                 createLoginData = function(usernameType, passwordType){
@@ -14,7 +14,7 @@
                     authenticationProxy.apiCallLogin(callName, requestData)
                         .then(function (data) {
                             //TODO: convert into friendly object in auth proxy.
-                            coreApiConverter.convert(data);
+                            coreApiConverter.convertLoginData(data);
                             me.currentToken = data.payload.user.token;
 
                             $state.go('lobby');
