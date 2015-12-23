@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core')
+    angular.module('Tombola.Games.Bingo90.Game')
         .service('GameProxy', ['$http', '$q', 'ProxyConstants', 'AuthenticationService', function($http, $q, proxyConstants, authenticationService){
             var me = this;
 
@@ -26,5 +26,8 @@
                 return deferred.promise;
             };
 
+
+
         }]);
 })();
+

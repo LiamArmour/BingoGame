@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core').
+    angular.module('Tombola.Games.Bingo90.Game').
         directive('ticketSquare', function(){
             return {
                 restrict: 'A',

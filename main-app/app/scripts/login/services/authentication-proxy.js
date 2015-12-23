@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('Tombola.Games.Bingo90.Core')
+    angular.module('Tombola.Games.Bingo90.Login')
         .service('AuthenticationProxy', ['$http', '$q', 'ProxyConstants', function($http, $q, proxyConstants){
             var me = this;
 
