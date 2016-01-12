@@ -1,6 +1,5 @@
 (function(){
     'use strict';
-    
     var copyTask = require('./.grunt/copy-task');
     var lessTask = require('./.grunt/less-task');
     var javaTask = require('./.grunt/java-task');
