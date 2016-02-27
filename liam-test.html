@@ -1,0 +1,609 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="//www.downtown-mafia.com/">
+    <title>Forums</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto Slab:700|Hind|Roboto|Monda|Lobster|Cuprum|Pacifico|Arapey|Marcellus SC|Germania One|Electrolize|Oswald|Signika|Abel|Play">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="//ds.crimecdn.com/css/main/5.css">
+    <link rel="stylesheet" type="text/css" href="//ds.crimecdn.com/static/css/ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="//ds.crimecdn.com/static/css/game/tooltipster.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min.css">
+    <link rel="stylesheet" type="text/css" href="//ds.crimecdn.com/static/css/game/nanoscroller.css">
+    <link href="static/css/game/forum.css?rev=2" rel="stylesheet" type="text/css" />
+    <link href="//caviar.dtmcdn.com/static/css/game/missions.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="//ds.crimecdn.com/static/images/icon.ico">
+    <link rel="preconnect" href="//id.crimecdn.com">
+    <link rel="preconnect" href="//ng.crimecdn.com">
+    <link rel="preconnect" href="//caviar.dtmcdn.com">
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "forumsajax_thread.php",
+            data: "post=",
+            cache: false,
+            success: function(response){
+                $('#right').fadeOut(200, function() {
+                    $('#right').html(response);
+                    $('#right').fadeIn(200);
+                });
+            }
+        });
+        function refreshLeft() {
+            if (!$('#topicCreate').hasClass('pauseUpdate') && !$('#editTopic').hasClass('pauseUpdate')) {
+                $.ajax({
+                    type: "POST",
+                    url: "forumsajax_main.php",
+                    data: "id=&highlight=" + $('.selected').attr('threadid'),
+                    cache: false,
+                    success: function(response){
+                        $('#left').html(response);
+                    }
+                });
+            }
+        }
+        function autoRefresh() {
+            if (!$('#topicCreate').hasClass('pauseUpdate') && !$('#editTopic').hasClass('pauseUpdate')) {
+                $.ajax({
+                    type: "POST",
+                    url: "forumsajax_main.php",
+                    data: "id=&highlight=" + $('.selected').attr('threadid') + "&cpage=" + $('#currentPage').html(),
+                    cache: false,
+                    success: function(response){
+                        $('#left').html(response);
+                    }
+                });
+            }
+            //eval("setTimeout(function(){ autoRefresh(); },70000);");
+            if (window.windowFocus == true) { eval("setTimeout(function(){ autoRefresh(); },45000);"); } else { eval("setTimeout(function(){ autoRefresh(); },300000);"); }
+        }
+        eval("setTimeout(function(){ autoRefresh(); },45000);");
+        $('#refresh').live('click', function() {
+            refreshLeft();
+        });
+        $('.off').live('mouseenter', function() {
+            if ($(this).hasClass('selected') == false) {
+                $(this).removeClass('off').addClass('both');
+            }
+        });
+        $('.on').live('mouseenter', function() {
+            if ($(this).hasClass('selected') == false) {
+                $(this).removeClass('on').addClass('both');
+            }
+        });
+        $('.forum-page').live('click', function() {
+            selectedThread = $('.selected').attr('threadid');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + selectedThread + "&cpage=" + $(this).attr('page'),
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.left-page').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_main.php",
+                data: "id=" + "&cpage=" + $(this).attr('page'),
+                cache: false,
+                success: function(response){
+                    $('#left').html(response);
+                }
+            });
+        });
+        $('.xxf').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $(this).attr('threadid'),
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+            $('.selected').removeClass('selected');
+            $('#xxfBypass' + $(this).attr('threadid')).addClass('selected');
+            if ($('#xxfBypass' + $(this).attr('threadid')).hasClass('xoff')) {
+                $('#xxfBypass' + $(this).attr('threadid')).removeClass('both').addClass('off');
+            }
+            else {
+                $('#xxfBypass' + $(this).attr('threadid')).removeClass('both').addClass('on');
+            }
+        });
+        $('.xxf').live('touchstart', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $(this).attr('threadid'),
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+            $('.selected').removeClass('selected');
+            $('#xxfBypass' + $(this).attr('threadid')).addClass('selected');
+            if ($('#xxfBypass' + $(this).attr('threadid')).hasClass('xoff')) {
+                $('#xxfBypass' + $(this).attr('threadid')).removeClass('both').addClass('off');
+            }
+            else {
+                $('#xxfBypass' + $(this).attr('threadid')).removeClass('both').addClass('on');
+            }
+        });
+        $('.emote').live('click', function() {
+            $('#pr1').insertAtCaret($(this).attr('textadd'), '');
+        });
+        $('.emote1').live('click', function() {
+            $('#nt2').insertAtCaret($(this).attr('textadd'), '');
+        });
+        $('.quoterep').live('click', function() {
+            $('html, body').animate({scrollTop:9999}, 800);
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&quotereqrep=" + $(this).attr('post'),
+                cache: false,
+                success: function(response){
+                    $('#pr1').insertAtCaret(response, '');
+                }
+            });
+        });
+        $('.delrelrep').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&cpage=" + $(this).attr('cpage') + "&exec=delrel&delrelrep=" + $(this).attr('post'),
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+        });
+        /* Voting system */
+        $('.rate_reply_like').live('click', function() {
+            $(this).css('color', '#36ff00');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=upvote&repid=" + $(this).attr('repid'),
+                cache: false
+            });
+        });
+        $('.rate_reply_hate').live('click', function() {
+            $(this).css('color', '#ff4b4b');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=downvote&repid=" + $(this).attr('repid'),
+                cache: false
+            });
+        });
+        $('.rate_topic_like').live('click', function() {
+            $(this).css('color', '#36ff00');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=upvotet",
+                cache: false
+            });
+        });
+        $('.rate_topic_hate').live('click', function() {
+            $(this).css('color', '#ff4b4b');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=downvotet",
+                cache: false
+            });
+        });
+        /* End Voting */
+        $('.quotetop').live('click', function() {
+            $('html, body').animate({scrollTop:9999}, 800);
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&quotereqtop=true",
+                cache: false,
+                success: function(response){
+                    $('#pr1').insertAtCaret(response, '');
+                }
+            });
+        });
+        $('.admdel').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=delete",
+                cache: false,
+                success: function(response){
+                    $('.selected').removeClass('selected');
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admlock').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=lock",
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admdelrelall').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=delrelall",
+                cache: false,
+                success: function(response){
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admreg').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=reg",
+                cache: false,
+                success: function(response){
+                    confirm('Topic was changed to regular!');
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admstick').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=stick",
+                cache: false,
+                success: function(response){
+                    confirm('Topic was changed to sticky!');
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admimp').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=imp",
+                cache: false,
+                success: function(response){
+                    confirm('Topic was changed to important!');
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admstar').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "post=" + $('.selected').attr('threadid') + "&exec=star",
+                cache: false,
+                success: function(response){
+                    confirm('Topic was changed to starred!');
+                    $('#right').html(response);
+                }
+            });
+        });
+        $('.admedi').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_edit.php",
+                data: "&reqedi=" + $('.selected').attr('threadid'),
+                cache: false,
+                success: function(response){
+                    $('#left').html(response);
+                }
+            });
+        });
+        $('#nt').live('click', function() {
+            $('#topicCreate').slideToggle().toggleClass('pauseUpdate');
+        });
+        $('#nt3').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_main.php",
+                data: "id=" + "&subj=" + encodeURIComponent($('#nt1').val()) + "&msg=" + encodeURIComponent($('#nt2').val()) + "&points=" + encodeURIComponent($('#nt4').val()) + "&startas=" + encodeURIComponent($('#nt5 option:selected').val()) + "&color=" + encodeURIComponent($('#nt6 option:selected').val()),
+                cache: false,
+                success: function(response){
+                    $('#left').html(response);
+                }
+            });
+        });
+        $('#pr2').live('click', function() {
+            $('#pr2').attr('disabled', 'disabled').val('Please wait...');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_thread.php",
+                data: "msg=" + encodeURIComponent($('#pr1').val()) + "&reptop=" + $('.selected').attr('threadid'),
+                cache: false,
+                success: function(response){
+                    if (response == 'time') {
+                        alert('You must wait 15 seconds to post again.');
+                        $('#pr2').removeAttr('disabled').val('Retry Post!');
+                    }
+                    else {
+                        $('html, body').animate({scrollTop:0}, 'slow');
+                        $('#right').html(response);
+                    }
+                }
+            });
+        });
+        $('#edit3').live('click', function() {
+            $('#edit3').attr('disabled', 'disabled').val('Please wait...');
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_edit.php",
+                data: "reqedi=" + $('#edit4').val() + "&subj=" + encodeURIComponent($('#edit1').val()) + "&msg=" + encodeURIComponent($('#edit2').val()) + "&startas=" + encodeURIComponent($('#edit5 option:selected').val()) + "&color=" + encodeURIComponent($('#edit6 option:selected').val()),
+                cache: false,
+                success: function(response){
+                    $.ajax({
+                        type: "POST",
+                        url: "forumsajax_main.php",
+                        data: "id=",
+                        cache: false,
+                        success: function(response){
+                            $('#left').html(response);
+                            $('#right').html('');
+                        }
+                    });
+                }
+            });
+        });
+        $('#ca2').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_main.php",
+                data: "newav=" + encodeURIComponent($('#ca1').val()),
+                cache: false,
+                success: function(response){
+                    $('#left').html(response);
+                }
+            });
+        });
+        $('.both').live('mouseleave', function() {
+            if ($(this).hasClass('selected') == false) {
+                if ($(this).hasClass('xoff')) {
+                    $(this).removeClass('both').addClass('off');
+                }
+                else {
+                    $(this).removeClass('both').addClass('on');
+                }
+            }
+        });
+        $('#mute').live('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "forumsajax_main.php",
+                data: "muteuser=" + $('#mute_username').val() + "&mutelength=" + $('#mute_time').val() + "&mutereason=" + $('#mute_reason option:selected').html(),
+                cache: false,
+                success: function(response){
+                    $('#mute_username').val('');
+                    $('#mute_time').val('');
+                    confirm(response);
+                }
+            });
+        });
+    });
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="99%">
+    <tr>
+        <td valign="top" width="44%" align="center">
+            <div id="left">
+                <div id="topicCreate" style="display:none;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="97%" class="box">
+                        <tr>
+                            <td class="top">Create a Thread</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding:14px;">
+                                Thread Subject:<br>
+                                <input type="text" placeholder="The subject of your post" style="width:100%;margin-bottom:4px;margin-top:4px;" id="nt1"><br>
+                                Content:<br>
+                                <textarea class="inp" placeholder="Your post content" style="width: 100%; height: 120px; margin-bottom:4px;margin-top:4px;" id="nt2"></textarea><br>
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_biggrin.png" textadd=":D" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_lol.png" textadd=":lol:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_razz.png" textadd=":P" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_smile.png" textadd=":)" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_wink.png" textadd=";)" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_cool.png" textadd=":cool:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_mad.png" textadd=":mad:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_surprised.png" textadd=":O" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_twisted.png" textadd=":twisted:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_neutral.png" textadd=":|" class="emote1">
+                                <br>
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_rolleyes.png" textadd=":rolleyes:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_sad.png" textadd=":(" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_confused.png" textadd=":confused:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_cry.png" textadd=":cry:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_eek.png" textadd=":eek:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_evil.png" textadd=":evil:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_arrow.png" textadd=":arrow:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_redface.png" textadd=":redface:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_exclaim.png" textadd=":!:" class="emote1">
+                                <img src="//caviar.dtmcdn.com/static/smilies/icon_question.png" textadd=":?:" class="emote1">
+                                <br>
+                                <input type="button" value="Post Thread!" id="nt3" class="sub" style="margin-top:4px">
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+                <table cellpadding="0" cellspacing="0" border="0" width="97%" class="box">
+                    <tr>
+                        <td class="top" colspan="3"><span style="cursor: pointer;" title="Refresh forum" id="refresh">Main Forum</span>
+                            <span style="opacity:0.65;"><span class="pointer hover" id="nt" style="float:right;opacity:0.65;">(New Thread)</span></span></td>
+
+                    </tr>
+                    <tr>
+                        <td class="backdrop" align="center" colspan="3" style="padding:4px;">
+                            <span class="royal">Game related discussions.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:7px;background-color:#353535 !important;">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="noborders">
+                                <tr class="off xoff xxf" id="xxfBypass1" threadid="1">
+                                    <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1"><img src="//caviar.dtmcdn.com/static/icons/bullet_black.png" width="12" height="12" style="vertical-align: top"> <span style="color:#8f8f8f;">Welcome to Round 5</span></span></td>
+                                    <td width="20%" style="font-size:12px;" align="center"style="color:#8f8f8f">113</td>
+                                    <td width="20%" style="font-size:12px;" align="right"style="color:#8f8f8f">McFlaccid</td>
+                                </tr>                            <tr class="on xon xxf" id="xxfBypass205" threadid="205">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="205"><img src="//caviar.dtmcdn.com/static/icons/information.png" width="12" height="12" style="vertical-align: top"> <span style="color:#ffffff">DTM GameGuide!</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">28</td>
+                                <td width="20%" style="font-size:12px;" align="right">KWolf</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass990" threadid="990">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="990"><span style="color:#ffffff"> Federal Takedown Part II</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">30</td>
+                                <td width="20%" style="font-size:12px;" align="right">Septicaemic</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass13" threadid="13">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="13"><span style="color:#ffffff">Major Crimes</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">683</td>
+                                <td width="20%" style="font-size:12px;" align="right">StillLostMyPug</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass6" threadid="6">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="6"><span style="color:#ffffff">Numbergame</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">7263</td>
+                                <td width="20%" style="font-size:12px;" align="right">Devil1-</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass12" threadid="12">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="12"><span style="color:#ffffff">Count Down</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">5297</td>
+                                <td width="20%" style="font-size:12px;" align="right">Devil1-</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1590" threadid="1590">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1590"><span style="color:#ffffff">Not allowed to shoot</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">352</td>
+                                <td width="20%" style="font-size:12px;" align="right">MalfoyReturns</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1595" threadid="1595">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1595"><span style="color:#ffffff">Ps4 addiction </span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">34</td>
+                                <td width="20%" style="font-size:12px;" align="right">Tarek123</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass4" threadid="4">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="4"><span style="color:#ffffff">Looking for someone?</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">290</td>
+                                <td width="20%" style="font-size:12px;" align="right">Perfect</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass11" threadid="11">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="11"><span style="color:#ffffff">Poker</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">358</td>
+                                <td width="20%" style="font-size:12px;" align="right">HeistRocka</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1603" threadid="1603">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1603"><span style="color:#ffffff">Rank promotions rewards</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">26</td>
+                                <td width="20%" style="font-size:12px;" align="right">Wilkdog</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1621" threadid="1621">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1621"><span style="color:#ffffff">Supporting the game.</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">74</td>
+                                <td width="20%" style="font-size:12px;" align="right">MalfoyReturns</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1464" threadid="1464">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1464"><span style="color:#ffffff">News</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">150</td>
+                                <td width="20%" style="font-size:12px;" align="right">McFlaccid</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass15" threadid="15">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="15"><span style="color:#78faff">Suggestions </span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">592</td>
+                                <td width="20%" style="font-size:12px;" align="right">NiborK</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1619" threadid="1619">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1619"><span style="color:#ffffff">Laundering</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">14</td>
+                                <td width="20%" style="font-size:12px;" align="right">Fire</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1609" threadid="1609">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1609"><span style="color:#ffffff">Anyone fancy explaining </span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">9</td>
+                                <td width="20%" style="font-size:12px;" align="right">StillLostMyPug</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass161" threadid="161">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="161"><span style="color:#d478ff">Questions &amp; Answers Topic</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">489</td>
+                                <td width="20%" style="font-size:12px;" align="right">Drdrace</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass5" threadid="5">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="5"><span style="color:#ffffff">Drug Runs</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">160</td>
+                                <td width="20%" style="font-size:12px;" align="right">Rheasus-II</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1545" threadid="1545">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1545"><span style="color:#ffffff">Fight clubs back</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">16</td>
+                                <td width="20%" style="font-size:12px;" align="right">Elmer-Fudd</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1604" threadid="1604">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1604"><span style="color:#ffffff">Need</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">1</td>
+                                <td width="20%" style="font-size:12px;" align="right">TheBearded</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1591" threadid="1591">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1591"><span style="color:#ffffff">Why?</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">8</td>
+                                <td width="20%" style="font-size:12px;" align="right">MalfoyReturns</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1593" threadid="1593">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1593"><span style="color:#ffffff">Goodbye Andy</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">3</td>
+                                <td width="20%" style="font-size:12px;" align="right">StillLostMyPug</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1592" threadid="1592">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1592"><span style="color:#ffffff">Hmmm</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">1</td>
+                                <td width="20%" style="font-size:12px;" align="right">Lowkey1</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1572" threadid="1572">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1572"><span style="color:#ffffff">Federal Takedown Part II</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">1</td>
+                                <td width="20%" style="font-size:12px;" align="right">RidsterII</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1511" threadid="1511">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1511"><span style="color:#ffffff">So, what's your job?</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">56</td>
+                                <td width="20%" style="font-size:12px;" align="right">Kismayo</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass214" threadid="214">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="214"><span style="color:#ffbe78">Remember when?</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">88</td>
+                                <td width="20%" style="font-size:12px;" align="right">HeyItsSarge</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1547" threadid="1547">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1547"><span style="color:#ffffff">Cards Against Humanity</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">5</td>
+                                <td width="20%" style="font-size:12px;" align="right">Mushie</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass541" threadid="541">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="541"><span style="color:#ffffff">Dutch Bar</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">172</td>
+                                <td width="20%" style="font-size:12px;" align="right">Benny</td>
+                            </tr>                            <tr class="off xoff xxf" id="xxfBypass1507" threadid="1507">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1507"><span style="color:#ffffff">What's the going rate</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">10</td>
+                                <td width="20%" style="font-size:12px;" align="right">Para</td>
+                            </tr>                            <tr class="on xon xxf" id="xxfBypass1541" threadid="1541">
+                                <td width="60%" style="font-size:12px;" align="left"><span class="xxf" threadid="1541"><span style="color:#ffffff">Poker</span></span></span></td>
+                                <td width="20%" style="font-size:12px;" align="center">7</td>
+                                <td width="20%" style="font-size:12px;" align="right">StillLostMyPug</td>
+                            </tr>                            <tr>
+                                <td colspan="3" style="background-color:#353535 !important;">
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:5px;background-color:#353535 !important;">
+                                        <tr>
+                                            <td width="20%" style="color:#fff;padding:3px;font-size:11px;background-color:#353535 !important;" align="left">
+                                                <input type='button' class='sub' value='< Next' style='opacity:0.3;'>                                            </td>
+                                            <td width="60%" style="color:#fff;padding:3px;font-size:11px;background-color:#353535 !important;" align="center">
+                                                <span id="currentPage" style="font-weight:bold;" class="highlight">1</span> <span class="pointer left-page" page="2">2</span> <span class="pointer left-page" page="3">3</span> <span class="pointer left-page" page="4">4</span> <span class="pointer left-page" page="5">5</span> <span class="pointer left-page" page="6">6</span> <span class="pointer left-page" page="7">7</span> <span class="pointer left-page" page="8">8</span>                                             </td>
+                                            <td width="20%" style="color:#fff;padding:3px;font-size:11px;background-color:#353535 !important;" align="right">
+                                                <input type='button' class='sub pointer left-page' value='Previous >' page='2'>                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br><br>
+            </div>
+        </td>
+        <td valign="top" align="center" width="56%">
+            <div id="right">
+                <div class="loadBox">Loading...<br><br><div style="color: #ad4b4b" class="la-ball-square-clockwise-spin"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>                                </div>
+        </td>
+    </tr>
+</table>
